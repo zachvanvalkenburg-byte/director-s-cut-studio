@@ -12,11 +12,6 @@ import charPrinceHarry from "@/assets/char-prince-harry.jpg";
 import charTrudeau from "@/assets/char-trudeau.jpg";
 import charGreta from "@/assets/char-greta.jpg";
 import charBoebert from "@/assets/char-boebert.jpg";
-import charGabourey from "@/assets/char-gabourey.jpg";
-import charKristiNoem from "@/assets/char-kristi-noem.jpg";
-import charLeaMichele from "@/assets/char-lea-michele.jpg";
-import charJussie from "@/assets/char-jussie.jpg";
-import charPogoClown from "@/assets/char-pogo-clown.jpg";
 
 export interface CharacterElement {
   id: string;
@@ -73,8 +68,8 @@ export const defaultCharacterElements: CharacterElement[] = [
     name: "Abby Lee Miller",
     district: 7,
     archetype: "Dance Mom from Hell",
-    prompt_anchor: "Abby Lee: Motorized wheelchair, screaming, tactical gear. First death, massive fireball explosion.",
-    visual_logic: "Saving Private Ryan aesthetic. High-intensity physics. Shockwave ripple.",
+    prompt_anchor: "Abby Lee: Motorized wheelchair with reinforced steel frame, screaming commands, tactical gear strapped to chair arms. Wheelchair physics: heavy rolling momentum, sparks from metal scraping concrete, low center of gravity. First death, massive fireball explosion engulfing wheelchair.",
+    visual_logic: "Saving Private Ryan aesthetic. High-intensity physics — wheelchair debris, shrapnel trajectory, shockwave ripple. Low-angle emphasizing wheelchair's tank-like presence.",
     status: "Killed (Scene 2)",
     is_alive: false,
     survival_priority: 2,
@@ -199,65 +194,5 @@ export const defaultCharacterElements: CharacterElement[] = [
     is_alive: true,
     survival_priority: 3,
     image: charBoebert,
-  },
-  {
-    id: "gabourey",
-    name: "Gabourey Sidibe",
-    district: 14,
-    archetype: "The Immovable Force",
-    prompt_anchor: "Gabourey: Gold hoop earrings, tactical poncho, unshakable confidence, side-eye that ends wars.",
-    visual_logic: "Warm amber interior lighting. Steady tripod, regal composition. Controlled power.",
-    status: "Active",
-    is_alive: true,
-    survival_priority: 5,
-    image: charGabourey,
-  },
-  {
-    id: "kristi_noem",
-    name: "Kristi Noem",
-    district: 15,
-    archetype: "The Enforcer",
-    prompt_anchor: "Kristi: Blazer over body armor, flag pin, ice-cold composure, executive order energy on the battlefield.",
-    visual_logic: "Harsh overhead fluorescent. Government building aesthetic bleeding into warzone rubble.",
-    status: "Active",
-    is_alive: true,
-    survival_priority: 3,
-    image: charKristiNoem,
-  },
-  {
-    id: "lea_michele",
-    name: "Lea Michele",
-    district: 16,
-    archetype: "The Understudy",
-    prompt_anchor: "Lea: Broadway costume torn into tactical wear, belting high notes as a war cry, dramatic tears on command.",
-    visual_logic: "Stage spotlight in the rubble. Theatrical warm glow against cold battlefield teal. Dramatic close-ups.",
-    status: "Active",
-    is_alive: true,
-    survival_priority: 4,
-    image: charLeaMichele,
-  },
-  {
-    id: "jussie",
-    name: "Jussie Smollett",
-    district: 17,
-    archetype: "The Fabricator",
-    prompt_anchor: "Jussie: Hoodie with suspicious rope marks, constantly looking over shoulder, victim energy weaponized, trust no one aura.",
-    visual_logic: "Noir lighting. Deep shadows, unreliable narrator framing. Security cam grain overlay.",
-    status: "Active",
-    is_alive: true,
-    survival_priority: 2,
-    image: charJussie,
-  },
-  {
-    id: "pogo_clown",
-    name: "John Wayne Gacy (Pogo)",
-    district: 13,
-    archetype: "The Hidden Monster",
-    prompt_anchor: "Pogo: Cheerful clown makeup over dead eyes, balloon animals and buried secrets, suburban horror made flesh.",
-    visual_logic: "Oversaturated carnival colors bleeding into desaturated dread. Static wide shots. Uncanny stillness.",
-    status: "Active",
-    is_alive: true,
-    survival_priority: 1,
-    image: charPogoClown,
   },
 ];

@@ -28,6 +28,36 @@ export const DEFAULT_STYLE_BIBLE: StyleRule[] = [
   },
 ];
 
+// Scene-specific style overrides
+export const SCENE_STYLE_OVERRIDES: Record<number, StyleRule[]> = {
+  2: [
+    {
+      id: "shutter-s2",
+      category: "SHUTTER",
+      label: "Shutter Angle",
+      value: "45–90 degrees. Staccato jittery motion, D-Day landing stutter-step. No motion blur — every frame razor-sharp and violent.",
+    },
+    {
+      id: "color-s2",
+      category: "COLOR",
+      label: "Bleach Bypass",
+      value: "Bleach bypass effect, desaturated teals, high-contrast shadows. Crushed blacks, blown highlights. ENR skip-bleach emulation.",
+    },
+    {
+      id: "camera-s2",
+      category: "CAMERA",
+      label: "Combat Cam",
+      value: "Handheld combat-cam with mud/water droplets on lens. Erratic whip pans, flinch-zooms on explosions. Lens never clean.",
+    },
+  ],
+};
+
+export function getStyleBibleForScene(sceneId: number): StyleRule[] {
+  const overrides = SCENE_STYLE_OVERRIDES[sceneId];
+  if (!overrides) return DEFAULT_STYLE_BIBLE;
+  return [...DEFAULT_STYLE_BIBLE, ...overrides];
+}
+
 interface SceneInfo {
   id: number;
   name: string;
@@ -40,13 +70,14 @@ export function generateScenePrompt(
   customDirectives: string
 ): string {
   const lines: string[] = [];
+  const effectiveRules = getStyleBibleForScene(scene.id);
 
   lines.push(`[KLING_AI_PROMPT // SCENE_${String(scene.id).padStart(2, "0")}: ${scene.name}]`);
   lines.push("");
 
-  // Style Bible
+  // Style Bible (with scene overrides merged)
   lines.push("--- STYLE_BIBLE ---");
-  for (const rule of styleBible) {
+  for (const rule of effectiveRules) {
     lines.push(`${rule.category}: ${rule.value}`);
   }
   lines.push("");
