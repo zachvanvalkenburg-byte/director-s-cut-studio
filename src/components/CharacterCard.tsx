@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, FileText, X, Copy, Skull } from "lucide-react";
+import { Check, FileText, X, Copy, Skull, ExternalLink, Image } from "lucide-react";
 import { toast } from "sonner";
 import type { CharacterElement } from "@/lib/characters";
 import { getScenesForCharacter } from "@/lib/sceneScripts";
@@ -149,14 +149,59 @@ const CharacterCard = ({ character, selected, onToggle, onKill, onSetDeathScene 
           </h3>
 
           {!isDead && (
-            <motion.button
-              onClick={handleGenerateScript}
-              className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-sm bg-primary/10 py-1.5 font-mono text-[9px] uppercase tracking-widest text-primary transition-colors hover:bg-primary/25"
-              whileTap={{ scale: 0.96 }}
-            >
-              <FileText className="h-3 w-3" />
-              Generate Script
-            </motion.button>
+            <div className="mt-2 flex flex-col gap-1">
+              <motion.button
+                onClick={handleGenerateScript}
+                className="flex w-full items-center justify-center gap-1.5 rounded-sm bg-primary/10 py-1.5 font-mono text-[9px] uppercase tracking-widest text-primary transition-colors hover:bg-primary/25"
+                whileTap={{ scale: 0.96 }}
+              >
+                <FileText className="h-3 w-3" />
+                Generate Script
+              </motion.button>
+
+              {/* Kling Production Sync */}
+              <div className="flex gap-1">
+                <motion.button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    const url = new URL(character.image, window.location.origin).href;
+                    navigator.clipboard.writeText(url);
+                    toast.success("IMAGE_URL_COPIED");
+                  }}
+                  className="flex flex-1 items-center justify-center gap-1 rounded-sm bg-accent/10 py-1 font-mono text-[8px] uppercase tracking-widest text-accent transition-colors hover:bg-accent/20"
+                  whileTap={{ scale: 0.96 }}
+                  title="Copy image URL"
+                >
+                  <Image className="h-2.5 w-2.5" />
+                  IMG
+                </motion.button>
+                <motion.button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigator.clipboard.writeText(character.prompt_anchor);
+                    toast.success("ELEMENT_PROMPT_COPIED");
+                  }}
+                  className="flex flex-1 items-center justify-center gap-1 rounded-sm bg-accent/10 py-1 font-mono text-[8px] uppercase tracking-widest text-accent transition-colors hover:bg-accent/20"
+                  whileTap={{ scale: 0.96 }}
+                  title="Copy element prompt for Kling"
+                >
+                  <Copy className="h-2.5 w-2.5" />
+                  PROMPT
+                </motion.button>
+                <motion.button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.open("https://klingai.com", "_blank");
+                  }}
+                  className="flex flex-1 items-center justify-center gap-1 rounded-sm bg-accent/10 py-1 font-mono text-[8px] uppercase tracking-widest text-accent transition-colors hover:bg-accent/20"
+                  whileTap={{ scale: 0.96 }}
+                  title="Open Kling AI"
+                >
+                  <ExternalLink className="h-2.5 w-2.5" />
+                  KLING
+                </motion.button>
+              </div>
+            </div>
           )}
         </div>
       </motion.div>
