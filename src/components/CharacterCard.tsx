@@ -4,6 +4,7 @@ import { Check, FileText, X, Copy, Skull, ExternalLink, Image } from "lucide-rea
 import { toast } from "sonner";
 import type { CharacterElement } from "@/lib/characters";
 import { getScenesForCharacter } from "@/lib/sceneScripts";
+import VFXReviewPanel from "@/components/VFXReviewPanel";
 
 interface CharacterCardProps {
   character: CharacterElement;
