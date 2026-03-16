@@ -30,7 +30,7 @@ const Index = () => {
     });
   }, []);
 
-  const toggleKill = useCallback((id: string) => {
+  const toggleKill = useCallback((id: string, deathScene?: number) => {
     setCharacters((prev) =>
       prev.map((c) => {
         if (c.id !== id) return c;
@@ -38,12 +38,26 @@ const Index = () => {
         toast.success(
           nowAlive
             ? `REVIVED: ${c.name} returned to active roster.`
-            : `ELIMINATED: ${c.name} marked KIA.`
+            : `ELIMINATED: ${c.name} marked KIA${deathScene ? ` (Scene ${deathScene})` : ""}.`
         );
         return {
           ...c,
           is_alive: nowAlive,
-          status: nowAlive ? "Active" : `Killed`,
+          status: nowAlive ? "Active" : `Killed (Scene ${deathScene || "?"})`,
+          death_scene: nowAlive ? undefined : deathScene,
+        };
+      })
+    );
+  }, []);
+
+  const setDeathScene = useCallback((id: string, scene: number) => {
+    setCharacters((prev) =>
+      prev.map((c) => {
+        if (c.id !== id) return c;
+        return {
+          ...c,
+          death_scene: scene,
+          status: c.is_alive ? c.status : `Killed (Scene ${scene})`,
         };
       })
     );
