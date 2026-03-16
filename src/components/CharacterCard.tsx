@@ -1,16 +1,16 @@
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
+import type { CharacterElement } from "@/lib/characters";
 
 interface CharacterCardProps {
-  name: string;
-  type: string;
-  assetId: string;
-  image: string;
+  character: CharacterElement;
   selected?: boolean;
   onToggle?: () => void;
 }
 
-const CharacterCard = ({ name, type, assetId, image, selected, onToggle }: CharacterCardProps) => {
+const CharacterCard = ({ character, selected, onToggle }: CharacterCardProps) => {
+  const isKilled = character.status.startsWith("Killed");
+
   return (
     <motion.div
       onClick={onToggle}
@@ -25,12 +25,10 @@ const CharacterCard = ({ name, type, assetId, image, selected, onToggle }: Chara
     >
       {/* Image */}
       <img
-        src={image}
-        alt={name}
+        src={character.image}
+        alt={character.name}
         className={`h-full w-full object-cover transition-all duration-300 ${
-          selected
-            ? "opacity-100 grayscale-0"
-            : "opacity-80 grayscale-[0.2] hover:opacity-100 hover:grayscale-0"
+          isKilled ? "opacity-40 grayscale" : selected ? "opacity-100 grayscale-0" : "opacity-80 grayscale-[0.2] hover:opacity-100 hover:grayscale-0"
         }`}
       />
 
@@ -45,17 +43,30 @@ const CharacterCard = ({ name, type, assetId, image, selected, onToggle }: Chara
         </motion.div>
       )}
 
+      {/* Status badge (killed) */}
+      {isKilled && (
+        <div className="absolute left-2 top-2 rounded-sm bg-destructive/80 px-1.5 py-0.5 font-mono text-[8px] uppercase tracking-widest text-destructive-foreground backdrop-blur-sm">
+          ✕ KIA
+        </div>
+      )}
+
       {/* Bottom gradient overlay */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent p-3">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-primary">
-          {type}
-        </p>
-        <h3 className="text-sm font-semibold text-foreground">{name}</h3>
+      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/95 via-background/50 to-transparent p-3">
+        <div className="mb-0.5 flex items-center gap-1.5">
+          <span className="font-mono text-[9px] uppercase tracking-widest text-primary">
+            D{character.district}
+          </span>
+          <span className="text-muted-foreground/30">·</span>
+          <span className="font-mono text-[9px] text-accent/70 truncate">
+            {character.archetype}
+          </span>
+        </div>
+        <h3 className="text-sm font-semibold text-foreground truncate">{character.name}</h3>
       </div>
 
-      {/* Asset ID badge */}
+      {/* ID badge */}
       <div className="absolute right-2 top-2 rounded-sm bg-background/60 px-1.5 py-0.5 font-mono text-[9px] text-muted-foreground backdrop-blur-md">
-        ID: {assetId}
+        {character.id.toUpperCase()}
       </div>
     </motion.div>
   );
