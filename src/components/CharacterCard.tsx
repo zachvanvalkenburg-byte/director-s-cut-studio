@@ -1,6 +1,9 @@
-import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Check, FileText, X, Copy } from "lucide-react";
+import { toast } from "sonner";
 import type { CharacterElement } from "@/lib/characters";
+import { getScenesForCharacter } from "@/lib/sceneScripts";
 
 interface CharacterCardProps {
   character: CharacterElement;
@@ -10,65 +13,196 @@ interface CharacterCardProps {
 
 const CharacterCard = ({ character, selected, onToggle }: CharacterCardProps) => {
   const isKilled = character.status.startsWith("Killed");
+  const [showScript, setShowScript] = useState(false);
+
+  const handleGenerateScript = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowScript(true);
+  };
+
+  const handleCloseScript = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowScript(false);
+  };
+
+  const handleCopyNarrator = (e: React.MouseEvent, text: string) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(text);
+    toast.success("NARRATOR_LINE_COPIED");
+  };
+
+  const characterScenes = getScenesForCharacter(character.id);
 
   return (
-    <motion.div
-      onClick={onToggle}
-      className={`relative aspect-square cursor-pointer overflow-hidden rounded-lg bg-surface transition-shadow ${
-        selected
-          ? "shadow-[0_0_0_2px_hsl(185,35%,45%),0_4px_12px_-2px_rgba(0,0,0,0.4)]"
-          : "shadow-surface hover:shadow-surface-hover"
-      }`}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      transition={{ type: "spring", stiffness: 400, damping: 25 }}
-    >
-      {/* Image */}
-      <img
-        src={character.image}
-        alt={character.name}
-        className={`h-full w-full object-cover transition-all duration-300 ${
-          isKilled ? "opacity-40 grayscale" : selected ? "opacity-100 grayscale-0" : "opacity-80 grayscale-[0.2] hover:opacity-100 hover:grayscale-0"
+    <>
+      <motion.div
+        onClick={onToggle}
+        className={`relative aspect-square cursor-pointer overflow-hidden rounded-lg bg-surface transition-shadow ${
+          selected
+            ? "shadow-[0_0_0_2px_hsl(185,35%,45%),0_4px_12px_-2px_rgba(0,0,0,0.4)]"
+            : "shadow-surface hover:shadow-surface-hover"
         }`}
-      />
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        transition={{ type: "spring", stiffness: 400, damping: 25 }}
+      >
+        {/* Image */}
+        <img
+          src={character.image}
+          alt={character.name}
+          className={`h-full w-full object-cover transition-all duration-300 ${
+            isKilled
+              ? "opacity-40 grayscale"
+              : selected
+              ? "opacity-100 grayscale-0"
+              : "opacity-80 grayscale-[0.2] hover:opacity-100 hover:grayscale-0"
+          }`}
+        />
 
-      {/* Selection check */}
-      {selected && (
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          className="absolute left-2 top-2 flex h-5 w-5 items-center justify-center rounded-sm bg-primary"
-        >
-          <Check className="h-3 w-3 text-primary-foreground" />
-        </motion.div>
-      )}
+        {/* Selection check */}
+        {selected && (
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            className="absolute left-2 top-2 flex h-5 w-5 items-center justify-center rounded-sm bg-primary"
+          >
+            <Check className="h-3 w-3 text-primary-foreground" />
+          </motion.div>
+        )}
 
-      {/* Status badge (killed) */}
-      {isKilled && (
-        <div className="absolute left-2 top-2 rounded-sm bg-destructive/80 px-1.5 py-0.5 font-mono text-[8px] uppercase tracking-widest text-destructive-foreground backdrop-blur-sm">
-          ✕ KIA
+        {/* KIA badge */}
+        {isKilled && !selected && (
+          <div className="absolute left-2 top-2 rounded-sm bg-destructive/80 px-1.5 py-0.5 font-mono text-[8px] uppercase tracking-widest text-destructive-foreground backdrop-blur-sm">
+            ✕ KIA
+          </div>
+        )}
+
+        {/* Bottom gradient overlay */}
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/95 via-background/50 to-transparent p-3 pb-2">
+          <div className="mb-0.5 flex items-center gap-1.5">
+            <span className="font-mono text-[9px] uppercase tracking-widest text-primary">
+              D{character.district}
+            </span>
+            <span className="text-muted-foreground/30">·</span>
+            <span className="font-mono text-[9px] text-accent/70 truncate">
+              {character.archetype}
+            </span>
+          </div>
+          <h3 className="text-sm font-semibold text-foreground truncate">{character.name}</h3>
+
+          {/* Generate Script button */}
+          <motion.button
+            onClick={handleGenerateScript}
+            className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-sm bg-primary/10 py-1.5 font-mono text-[9px] uppercase tracking-widest text-primary transition-colors hover:bg-primary/25"
+            whileTap={{ scale: 0.96 }}
+          >
+            <FileText className="h-3 w-3" />
+            Generate Script
+          </motion.button>
         </div>
-      )}
 
-      {/* Bottom gradient overlay */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/95 via-background/50 to-transparent p-3">
-        <div className="mb-0.5 flex items-center gap-1.5">
-          <span className="font-mono text-[9px] uppercase tracking-widest text-primary">
-            D{character.district}
-          </span>
-          <span className="text-muted-foreground/30">·</span>
-          <span className="font-mono text-[9px] text-accent/70 truncate">
-            {character.archetype}
-          </span>
+        {/* ID badge */}
+        <div className="absolute right-2 top-2 rounded-sm bg-background/60 px-1.5 py-0.5 font-mono text-[9px] text-muted-foreground backdrop-blur-md">
+          {character.id.toUpperCase()}
         </div>
-        <h3 className="text-sm font-semibold text-foreground truncate">{character.name}</h3>
-      </div>
+      </motion.div>
 
-      {/* ID badge */}
-      <div className="absolute right-2 top-2 rounded-sm bg-background/60 px-1.5 py-0.5 font-mono text-[9px] text-muted-foreground backdrop-blur-md">
-        {character.id.toUpperCase()}
-      </div>
-    </motion.div>
+      {/* Script overlay modal */}
+      <AnimatePresence>
+        {showScript && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm"
+            onClick={handleCloseScript}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              className="mx-4 max-h-[80vh] w-full max-w-lg overflow-y-auto rounded-lg bg-surface p-5 shadow-surface-hover"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal header */}
+              <div className="mb-4 flex items-start justify-between">
+                <div>
+                  <div className="mb-1 flex items-center gap-2">
+                    <span className="font-mono text-[9px] uppercase tracking-widest text-primary">
+                      D{character.district}
+                    </span>
+                    <span className="text-muted-foreground/30">·</span>
+                    <span className="font-mono text-[9px] text-accent/70">
+                      {character.archetype}
+                    </span>
+                    {isKilled && (
+                      <span className="rounded-sm bg-destructive/80 px-1 py-0.5 font-mono text-[7px] uppercase text-destructive-foreground">
+                        KIA
+                      </span>
+                    )}
+                  </div>
+                  <h2 className="text-base font-semibold tracking-tight text-foreground">
+                    {character.name}
+                  </h2>
+                  <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">
+                    {character.prompt_anchor}
+                  </p>
+                </div>
+                <button
+                  onClick={handleCloseScript}
+                  className="flex h-6 w-6 items-center justify-center rounded-sm text-muted-foreground transition-colors hover:bg-muted/30 hover:text-foreground"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+
+              {/* Narrator lines per scene */}
+              <div className="flex flex-col gap-3">
+                <label className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                  NARRATOR_LINES // {characterScenes.length} SCENE{characterScenes.length !== 1 ? "S" : ""}
+                </label>
+
+                {characterScenes.length === 0 ? (
+                  <p className="text-xs text-muted-foreground/60 italic">
+                    No scenes assigned to this character.
+                  </p>
+                ) : (
+                  characterScenes.map((scene) => (
+                    <div
+                      key={scene.sceneId}
+                      className="rounded-md bg-background/40 p-3"
+                    >
+                      <div className="mb-2 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono text-[10px] text-primary">
+                            0{scene.sceneId}
+                          </span>
+                          <span className="text-xs font-medium tracking-tight text-foreground/80">
+                            {scene.sceneName}
+                          </span>
+                        </div>
+                        <motion.button
+                          onClick={(e) => handleCopyNarrator(e, scene.narratorScript)}
+                          className="flex items-center gap-1 rounded-sm px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-widest text-muted-foreground transition-colors hover:bg-muted/30 hover:text-foreground"
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Copy className="h-2.5 w-2.5" />
+                          COPY
+                        </motion.button>
+                      </div>
+                      <p className="font-mono text-[11px] italic leading-relaxed text-foreground/60">
+                        "{scene.narratorScript}"
+                      </p>
+                    </div>
+                  ))
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
