@@ -168,7 +168,8 @@ const Index = () => {
                       character={char}
                       selected={selectedIds.has(char.id)}
                       onToggle={() => toggleAsset(char.id)}
-                      onKill={() => toggleKill(char.id)}
+                      onKill={(deathScene) => toggleKill(char.id, deathScene)}
+                      onSetDeathScene={(scene) => setDeathScene(char.id, scene)}
                     />
                   ))}
                 </AnimatePresence>
