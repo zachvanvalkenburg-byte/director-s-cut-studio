@@ -12,6 +12,11 @@ import charPrinceHarry from "@/assets/char-prince-harry.jpg";
 import charTrudeau from "@/assets/char-trudeau.jpg";
 import charGreta from "@/assets/char-greta.jpg";
 import charBoebert from "@/assets/char-boebert.jpg";
+import charGabourey from "@/assets/char-gabourey.jpg";
+import charKristiNoem from "@/assets/char-kristi-noem.jpg";
+import charLeaMichele from "@/assets/char-lea-michele.jpg";
+import charJussie from "@/assets/char-jussie.jpg";
+import charPogoClown from "@/assets/char-pogo-clown.jpg";
 
 export interface CharacterElement {
   id: string;
