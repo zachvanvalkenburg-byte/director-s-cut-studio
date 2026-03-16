@@ -120,6 +120,12 @@ const Index = () => {
               ))}
             </div>
 
+            {/* Kling Copy Box — appears when character + scene selected */}
+            <KlingCopyBox
+              selectedCharacters={selectedChars}
+              activeScene={activeSceneData}
+            />
+
             <StyleBiblePanel rules={DEFAULT_STYLE_BIBLE} />
 
             <PromptGenerator
@@ -130,7 +136,7 @@ const Index = () => {
 
             <MakeSyncButton
               sceneTitle={activeSceneData?.name || "UNKNOWN"}
-              characterElements={selectedChars}
+              characterElements={selectedCharsForSync}
               generatedPrompt={generatedPrompt}
             />
           </>
