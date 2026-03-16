@@ -8,6 +8,8 @@ import StyleBiblePanel from "@/components/StyleBiblePanel";
 import MakeSyncButton from "@/components/MakeSyncButton";
 import MasterExportButton from "@/components/MasterExportButton";
 import InvideoAssemblyTab from "@/components/InvideoAssemblyTab";
+import ProductionScriptModal from "@/components/ProductionScriptModal";
+import ExportAudioScript from "@/components/ExportAudioScript";
 import KlingCopyBox from "@/components/KlingCopyBox";
 import { DEFAULT_STYLE_BIBLE, generateScenePrompt } from "@/lib/styleBible";
 import { defaultCharacterElements, type CharacterElement } from "@/lib/characters";
