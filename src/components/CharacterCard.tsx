@@ -293,6 +293,30 @@ const CharacterCard = ({ character, selected, onToggle, onKill, onSetDeathScene,
                   ))
                 )}
               </div>
+
+              {/* Voiceover Script Section */}
+              {character.voiceover_script && (
+                <div className="flex flex-col gap-3 border-t border-border/30 pt-4 mt-2">
+                  <div className="flex items-center justify-between">
+                    <label className="font-mono text-[10px] uppercase tracking-widest text-primary">
+                      VOICEOVER_SCRIPT // ELEVENTLABS
+                    </label>
+                    <motion.button
+                      onClick={(e) => handleCopyNarrator(e, character.voiceover_script!)}
+                      className="flex items-center gap-1.5 rounded-sm bg-primary/10 px-2 py-1 font-mono text-[9px] uppercase tracking-widest text-primary transition-colors hover:bg-primary/25"
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Copy className="h-3 w-3" />
+                      COPY TO ELEVENLABS
+                    </motion.button>
+                  </div>
+                  <div className="rounded-md bg-background/40 p-3">
+                    <p className="font-mono text-[11px] italic leading-relaxed text-foreground/60">
+                      "{character.voiceover_script}"
+                    </p>
+                  </div>
+                </div>
+              )}
             </motion.div>
           </motion.div>
         )}
