@@ -12,9 +12,10 @@ interface CharacterCardProps {
   onToggle?: () => void;
   onKill?: (deathScene?: number) => void;
   onSetDeathScene?: (scene: number) => void;
+  onUpdateCharacter?: (updates: Partial<CharacterElement>) => void;
 }
 
-const CharacterCard = ({ character, selected, onToggle, onKill, onSetDeathScene }: CharacterCardProps) => {
+const CharacterCard = ({ character, selected, onToggle, onKill, onSetDeathScene, onUpdateCharacter }: CharacterCardProps) => {
   const [showScript, setShowScript] = useState(false);
   const [pendingKillScene, setPendingKillScene] = useState<number>(1);
   const isDead = !character.is_alive;
