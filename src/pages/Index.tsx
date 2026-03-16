@@ -1,5 +1,6 @@
 import { useState, useCallback, useMemo } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+import { Skull } from "lucide-react";
 import SceneSidebar, { scenes } from "@/components/SceneSidebar";
 import CharacterCard from "@/components/CharacterCard";
 import PromptGenerator from "@/components/PromptGenerator";
@@ -8,7 +9,7 @@ import MakeSyncButton from "@/components/MakeSyncButton";
 import InvideoAssemblyTab from "@/components/InvideoAssemblyTab";
 import KlingCopyBox from "@/components/KlingCopyBox";
 import { DEFAULT_STYLE_BIBLE, generateScenePrompt } from "@/lib/styleBible";
-import { characterElements } from "@/lib/characters";
+import { defaultCharacterElements, type CharacterElement } from "@/lib/characters";
 import { toast } from "sonner";
 
 type DashboardTab = "assets" | "invideo";
@@ -18,6 +19,7 @@ const Index = () => {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [generatedPrompt, setGeneratedPrompt] = useState("");
   const [activeTab, setActiveTab] = useState<DashboardTab>("assets");
+  const [characters, setCharacters] = useState<CharacterElement[]>(defaultCharacterElements);
 
   const toggleAsset = useCallback((id: string) => {
     setSelectedIds((prev) => {
@@ -27,23 +29,45 @@ const Index = () => {
     });
   }, []);
 
+  const toggleKill = useCallback((id: string) => {
+    setCharacters((prev) =>
+      prev.map((c) => {
+        if (c.id !== id) return c;
+        const nowAlive = !c.is_alive;
+        toast.success(
+          nowAlive
+            ? `REVIVED: ${c.name} returned to active roster.`
+            : `ELIMINATED: ${c.name} marked KIA.`
+        );
+        return {
+          ...c,
+          is_alive: nowAlive,
+          status: nowAlive ? "Active" : `Killed`,
+        };
+      })
+    );
+  }, []);
+
   const handleGenerate = useCallback(() => {
     const scene = scenes.find((s) => s.id === activeScene);
     if (!scene) return;
-    const selected = characterElements.filter((c) => selectedIds.has(c.id));
+    const selected = characters.filter((c) => selectedIds.has(c.id));
     const prompt = generateScenePrompt(scene, selected, DEFAULT_STYLE_BIBLE, "");
     setGeneratedPrompt(prompt);
     toast.success(`PROMPT_GENERATED: Scene ${String(scene.id).padStart(2, "0")} compiled.`);
-  }, [activeScene, selectedIds]);
+  }, [activeScene, selectedIds, characters]);
+
+  const alive = useMemo(() => characters.filter((c) => c.is_alive), [characters]);
+  const eliminated = useMemo(() => characters.filter((c) => !c.is_alive), [characters]);
 
   const canGenerate = selectedIds.size > 0;
   const activeSceneData = scenes.find((s) => s.id === activeScene)!;
-  const selectedCharsForSync = characterElements
+  const selectedCharsForSync = characters
     .filter((c) => selectedIds.has(c.id))
     .map(({ id, name, archetype }) => ({ name, type: archetype, assetId: id }));
   const selectedChars = useMemo(
-    () => characterElements.filter((c) => selectedIds.has(c.id)),
-    [selectedIds]
+    () => characters.filter((c) => selectedIds.has(c.id)),
+    [selectedIds, characters]
   );
 
   const tabs: { id: DashboardTab; label: string }[] = [
@@ -64,18 +88,28 @@ const Index = () => {
                 DIRECTOR'S_DASHBOARD
               </h1>
               <p className="mt-1 text-lg font-semibold tracking-tight text-foreground">
-                {activeTab === "assets" ? "Character Element Library" : "Invideo Assembly"}
+                {activeTab === "assets" ? "Tribute Database" : "Invideo Assembly"}
               </p>
             </div>
             <div className="flex items-center gap-4">
-              {activeTab === "assets" && selectedIds.size > 0 && (
-                <span className="font-mono text-[10px] text-primary">
-                  {selectedIds.size} SELECTED
-                </span>
+              {activeTab === "assets" && (
+                <>
+                  {selectedIds.size > 0 && (
+                    <span className="font-mono text-[10px] text-primary">
+                      {selectedIds.size} SELECTED
+                    </span>
+                  )}
+                  <span className="font-mono text-[10px] text-primary/60">
+                    {alive.length} ALIVE
+                  </span>
+                  <span className="font-mono text-[10px] text-destructive/60">
+                    {eliminated.length} KIA
+                  </span>
+                </>
               )}
               <span className="font-mono text-[10px] text-muted-foreground">
                 {activeTab === "assets"
-                  ? `${characterElements.length} ELEMENTS_LOADED`
+                  ? `${characters.length} TRIBUTES`
                   : "6 SCENES_INDEXED"}
               </span>
             </div>
@@ -109,18 +143,51 @@ const Index = () => {
         {/* Tab content */}
         {activeTab === "assets" ? (
           <>
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-              {characterElements.map((char) => (
-                <CharacterCard
-                  key={char.id}
-                  character={char}
-                  selected={selectedIds.has(char.id)}
-                  onToggle={() => toggleAsset(char.id)}
-                />
-              ))}
-            </div>
+            {/* Active Tributes */}
+            <LayoutGroup>
+              <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+                <AnimatePresence mode="popLayout">
+                  {alive.map((char) => (
+                    <CharacterCard
+                      key={char.id}
+                      character={char}
+                      selected={selectedIds.has(char.id)}
+                      onToggle={() => toggleAsset(char.id)}
+                      onKill={() => toggleKill(char.id)}
+                    />
+                  ))}
+                </AnimatePresence>
+              </div>
+            </LayoutGroup>
 
-            {/* Kling Copy Box — appears when character + scene selected */}
+            {/* Eliminated Section */}
+            {eliminated.length > 0 && (
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-2">
+                  <Skull className="h-3.5 w-3.5 text-destructive/60" />
+                  <label className="font-mono text-[10px] uppercase tracking-widest text-destructive/60">
+                    ELIMINATED // {eliminated.length} TRIBUTE{eliminated.length !== 1 ? "S" : ""}
+                  </label>
+                </div>
+                <LayoutGroup>
+                  <div className="grid grid-cols-3 gap-3 md:grid-cols-4">
+                    <AnimatePresence mode="popLayout">
+                      {eliminated.map((char) => (
+                        <CharacterCard
+                          key={char.id}
+                          character={char}
+                          selected={selectedIds.has(char.id)}
+                          onToggle={() => toggleAsset(char.id)}
+                          onKill={() => toggleKill(char.id)}
+                        />
+                      ))}
+                    </AnimatePresence>
+                  </div>
+                </LayoutGroup>
+              </div>
+            )}
+
+            {/* Kling Copy Box */}
             <KlingCopyBox
               selectedCharacters={selectedChars}
               activeScene={activeSceneData}
