@@ -8,6 +8,15 @@ import charSteveBurns from "@/assets/char-steve-burns.jpg";
 import charBritney from "@/assets/char-britney.jpg";
 import charTyra from "@/assets/char-tyra.jpg";
 import charTimothee from "@/assets/char-timothee.jpg";
+import charPrinceHarry from "@/assets/char-prince-harry.jpg";
+import charTrudeau from "@/assets/char-trudeau.jpg";
+import charGreta from "@/assets/char-greta.jpg";
+import charBoebert from "@/assets/char-boebert.jpg";
+import charGabourey from "@/assets/char-gabourey.jpg";
+import charKristiNoem from "@/assets/char-kristi-noem.jpg";
+import charLeaMichele from "@/assets/char-lea-michele.jpg";
+import charJussie from "@/assets/char-jussie.jpg";
+import charPogoClown from "@/assets/char-pogo-clown.jpg";
 
 export interface CharacterElement {
   id: string;
@@ -18,7 +27,7 @@ export interface CharacterElement {
   visual_logic: string;
   status: string;
   is_alive: boolean;
-  survival_priority: number; // 1-10, used for wide shot filler generation
+  survival_priority: number;
   image: string;
 }
 
@@ -142,5 +151,113 @@ export const defaultCharacterElements: CharacterElement[] = [
     is_alive: true,
     survival_priority: 8,
     image: charTimothee,
+  },
+  {
+    id: "prince_harry",
+    name: "Prince Harry",
+    district: 8,
+    archetype: "The Exiled Royal",
+    prompt_anchor: "Harry: Military dress coat, thousand-yard stare, royal bearing cracked by battlefield trauma. Ginger beard, muddied medals.",
+    visual_logic: "Overcast English grey bleeding into teal-and-orange war tones. Telephoto compression, paparazzi framing.",
+    status: "Active",
+    is_alive: true,
+    survival_priority: 5,
+    image: charPrinceHarry,
+  },
+  {
+    id: "trudeau",
+    name: "Justin Trudeau",
+    district: 10,
+    archetype: "The Diplomat",
+    prompt_anchor: "Trudeau: Rolled sleeves, loosened tie, practiced empathy masking survival instinct. Campaign smile in a war zone.",
+    visual_logic: "Press conference lighting gone wrong. Fluorescent flicker, handheld news cam aesthetic.",
+    status: "Active",
+    is_alive: true,
+    survival_priority: 4,
+    image: charTrudeau,
+  },
+  {
+    id: "greta",
+    name: "Greta Thunberg",
+    district: 11,
+    archetype: "The Prophet",
+    prompt_anchor: "Greta: Yellow rain jacket, protest sign repurposed as shield, cold fury, unblinking. 'How dare you' energy weaponized.",
+    visual_logic: "Desaturated Nordic grey. Cold blue undertones, static locked-off framing. Documentary realism.",
+    status: "Active",
+    is_alive: true,
+    survival_priority: 6,
+    image: charGreta,
+  },
+  {
+    id: "boebert",
+    name: "Lauren Boebert",
+    district: 12,
+    archetype: "The Provocateur",
+    prompt_anchor: "Boebert: American flag bandana, dual pistols, defiant smirk, denim-and-kevlar combo. Campaign energy meets combat zone.",
+    visual_logic: "Overexposed Fox News lighting clashing with battlefield grit. Dutch angles, aggressive push-ins.",
+    status: "Active",
+    is_alive: true,
+    survival_priority: 3,
+    image: charBoebert,
+  },
+  {
+    id: "gabourey",
+    name: "Gabourey Sidibe",
+    district: 14,
+    archetype: "The Immovable Force",
+    prompt_anchor: "Gabourey: Gold hoop earrings, tactical poncho, unshakable confidence, side-eye that ends wars.",
+    visual_logic: "Warm amber interior lighting. Steady tripod, regal composition. Controlled power.",
+    status: "Active",
+    is_alive: true,
+    survival_priority: 5,
+    image: charGabourey,
+  },
+  {
+    id: "kristi_noem",
+    name: "Kristi Noem",
+    district: 15,
+    archetype: "The Enforcer",
+    prompt_anchor: "Kristi: Blazer over body armor, flag pin, ice-cold composure, executive order energy on the battlefield.",
+    visual_logic: "Harsh overhead fluorescent. Government building aesthetic bleeding into warzone rubble.",
+    status: "Active",
+    is_alive: true,
+    survival_priority: 3,
+    image: charKristiNoem,
+  },
+  {
+    id: "lea_michele",
+    name: "Lea Michele",
+    district: 16,
+    archetype: "The Understudy",
+    prompt_anchor: "Lea: Broadway costume torn into tactical wear, belting high notes as a war cry, dramatic tears on command.",
+    visual_logic: "Stage spotlight in the rubble. Theatrical warm glow against cold battlefield teal. Dramatic close-ups.",
+    status: "Active",
+    is_alive: true,
+    survival_priority: 4,
+    image: charLeaMichele,
+  },
+  {
+    id: "jussie",
+    name: "Jussie Smollett",
+    district: 17,
+    archetype: "The Fabricator",
+    prompt_anchor: "Jussie: Hoodie with suspicious rope marks, constantly looking over shoulder, victim energy weaponized, trust no one aura.",
+    visual_logic: "Noir lighting. Deep shadows, unreliable narrator framing. Security cam grain overlay.",
+    status: "Active",
+    is_alive: true,
+    survival_priority: 2,
+    image: charJussie,
+  },
+  {
+    id: "pogo_clown",
+    name: "John Wayne Gacy (Pogo)",
+    district: 13,
+    archetype: "The Hidden Monster",
+    prompt_anchor: "Pogo: Cheerful clown makeup over dead eyes, balloon animals and buried secrets, suburban horror made flesh.",
+    visual_logic: "Oversaturated carnival colors bleeding into desaturated dread. Static wide shots. Uncanny stillness.",
+    status: "Active",
+    is_alive: true,
+    survival_priority: 1,
+    image: charPogoClown,
   },
 ];
