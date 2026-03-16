@@ -206,6 +206,7 @@ const Index = () => {
                         onKill={(deathScene) => toggleKill(char.id, deathScene)}
                         onSetDeathScene={(scene) => setDeathScene(char.id, scene)}
                         onUpdateCharacter={(updates) => updateCharacter(char.id, updates)}
+                      />
                       ))}
                     </AnimatePresence>
                   </div>
