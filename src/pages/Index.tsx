@@ -189,13 +189,14 @@ const Index = () => {
                   <div className="grid grid-cols-3 gap-3 md:grid-cols-4">
                     <AnimatePresence mode="popLayout">
                       {eliminated.map((char) => (
-                        <CharacterCard
-                          key={char.id}
-                          character={char}
-                          selected={selectedIds.has(char.id)}
-                          onToggle={() => toggleAsset(char.id)}
-                          onKill={() => toggleKill(char.id)}
-                        />
+                      <CharacterCard
+                        key={char.id}
+                        character={char}
+                        selected={selectedIds.has(char.id)}
+                        onToggle={() => toggleAsset(char.id)}
+                        onKill={(deathScene) => toggleKill(char.id, deathScene)}
+                        onSetDeathScene={(scene) => setDeathScene(char.id, scene)}
+                      />
                       ))}
                     </AnimatePresence>
                   </div>
