@@ -1,6 +1,6 @@
 import charZach from "@/assets/char-zach.jpg";
 import charKyle from "@/assets/char-kyle.jpg";
-import charAltima from "@/assets/char-altima.jpg";
+import charAltima from "@/assets/char-keisha-altima.jpg";
 import charAbbyLee from "@/assets/char-abby-lee.jpg";
 import charLuigi from "@/assets/char-luigi.jpg";
 import charArtClown from "@/assets/char-art-clown.jpg";
@@ -48,8 +48,8 @@ export const defaultCharacterElements: CharacterElement[] = [
     name: "Keisha & The Altima",
     district: 5,
     archetype: "The Altima Driver",
-    prompt_anchor: "2014 Nissan Altima: Missing hubcap, dents, baby-on-board sticker, engine smoke, bass-boosted vibration.",
-    visual_logic: "Low-angle shaky cam. High-shutter speed motion blur.",
+    prompt_anchor: "Keisha: One hand on the wheel, doing nails with the other. 2014 Nissan Altima interior with hanging air fresheners, cracked windshield, bass-heavy vibration. High-shutter speed, war-zone grit, desaturated teal-and-orange.",
+    visual_logic: "Low-angle shaky cam. High-shutter speed motion blur. Interior POV from passenger seat.",
     status: "Active",
     is_alive: true,
     survival_priority: 8,
