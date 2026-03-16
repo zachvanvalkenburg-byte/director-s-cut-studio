@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
 import SceneSidebar, { scenes } from "@/components/SceneSidebar";
 import CharacterCard from "@/components/CharacterCard";
@@ -6,6 +6,7 @@ import PromptGenerator from "@/components/PromptGenerator";
 import StyleBiblePanel from "@/components/StyleBiblePanel";
 import MakeSyncButton from "@/components/MakeSyncButton";
 import InvideoAssemblyTab from "@/components/InvideoAssemblyTab";
+import KlingCopyBox from "@/components/KlingCopyBox";
 import { DEFAULT_STYLE_BIBLE, generateScenePrompt } from "@/lib/styleBible";
 import { characterElements } from "@/lib/characters";
 import { toast } from "sonner";
@@ -36,10 +37,14 @@ const Index = () => {
   }, [activeScene, selectedIds]);
 
   const canGenerate = selectedIds.size > 0;
-  const activeSceneData = scenes.find((s) => s.id === activeScene);
-  const selectedChars = characterElements
+  const activeSceneData = scenes.find((s) => s.id === activeScene)!;
+  const selectedCharsForSync = characterElements
     .filter((c) => selectedIds.has(c.id))
     .map(({ id, name, archetype }) => ({ name, type: archetype, assetId: id }));
+  const selectedChars = useMemo(
+    () => characterElements.filter((c) => selectedIds.has(c.id)),
+    [selectedIds]
+  );
 
   const tabs: { id: DashboardTab; label: string }[] = [
     { id: "assets", label: "ASSET_LIBRARY" },
@@ -115,6 +120,12 @@ const Index = () => {
               ))}
             </div>
 
+            {/* Kling Copy Box — appears when character + scene selected */}
+            <KlingCopyBox
+              selectedCharacters={selectedChars}
+              activeScene={activeSceneData}
+            />
+
             <StyleBiblePanel rules={DEFAULT_STYLE_BIBLE} />
 
             <PromptGenerator
@@ -125,7 +136,7 @@ const Index = () => {
 
             <MakeSyncButton
               sceneTitle={activeSceneData?.name || "UNKNOWN"}
-              characterElements={selectedChars}
+              characterElements={selectedCharsForSync}
               generatedPrompt={generatedPrompt}
             />
           </>
