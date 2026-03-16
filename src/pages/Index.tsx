@@ -65,6 +65,12 @@ const Index = () => {
     );
   }, []);
 
+  const updateCharacter = useCallback((id: string, updates: Partial<CharacterElement>) => {
+    setCharacters((prev) =>
+      prev.map((c) => (c.id === id ? { ...c, ...updates } : c))
+    );
+  }, []);
+
   const handleGenerate = useCallback(() => {
     const scene = scenes.find((s) => s.id === activeScene);
     if (!scene) return;
@@ -172,6 +178,7 @@ const Index = () => {
                       onToggle={() => toggleAsset(char.id)}
                       onKill={(deathScene) => toggleKill(char.id, deathScene)}
                       onSetDeathScene={(scene) => setDeathScene(char.id, scene)}
+                      onUpdateCharacter={(updates) => updateCharacter(char.id, updates)}
                     />
                   ))}
                 </AnimatePresence>
@@ -198,6 +205,7 @@ const Index = () => {
                         onToggle={() => toggleAsset(char.id)}
                         onKill={(deathScene) => toggleKill(char.id, deathScene)}
                         onSetDeathScene={(scene) => setDeathScene(char.id, scene)}
+                        onUpdateCharacter={(updates) => updateCharacter(char.id, updates)}
                       />
                       ))}
                     </AnimatePresence>

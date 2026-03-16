@@ -4,6 +4,7 @@ import { Check, FileText, X, Copy, Skull, ExternalLink, Image } from "lucide-rea
 import { toast } from "sonner";
 import type { CharacterElement } from "@/lib/characters";
 import { getScenesForCharacter } from "@/lib/sceneScripts";
+import VFXReviewPanel from "@/components/VFXReviewPanel";
 
 interface CharacterCardProps {
   character: CharacterElement;
@@ -11,9 +12,10 @@ interface CharacterCardProps {
   onToggle?: () => void;
   onKill?: (deathScene?: number) => void;
   onSetDeathScene?: (scene: number) => void;
+  onUpdateCharacter?: (updates: Partial<CharacterElement>) => void;
 }
 
-const CharacterCard = ({ character, selected, onToggle, onKill, onSetDeathScene }: CharacterCardProps) => {
+const CharacterCard = ({ character, selected, onToggle, onKill, onSetDeathScene, onUpdateCharacter }: CharacterCardProps) => {
   const [showScript, setShowScript] = useState(false);
   const [pendingKillScene, setPendingKillScene] = useState<number>(1);
   const isDead = !character.is_alive;
@@ -201,6 +203,10 @@ const CharacterCard = ({ character, selected, onToggle, onKill, onSetDeathScene 
                   KLING
                 </motion.button>
               </div>
+              <VFXReviewPanel
+                character={character}
+                onUpdateCharacter={(updates) => onUpdateCharacter?.(updates)}
+              />
             </div>
           )}
         </div>
