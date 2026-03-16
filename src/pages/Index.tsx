@@ -65,7 +65,12 @@ const Index = () => {
     );
   }, []);
 
-  const handleGenerate = useCallback(() => {
+  const updateCharacter = useCallback((id: string, updates: Partial<CharacterElement>) => {
+    setCharacters((prev) =>
+      prev.map((c) => (c.id === id ? { ...c, ...updates } : c))
+    );
+  }, []);
+
     const scene = scenes.find((s) => s.id === activeScene);
     if (!scene) return;
     const selected = characters.filter((c) => selectedIds.has(c.id));
