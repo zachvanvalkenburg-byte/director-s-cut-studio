@@ -13,8 +13,9 @@ interface CharacterCardProps {
   onSetDeathScene?: (scene: number) => void;
 }
 
-const CharacterCard = ({ character, selected, onToggle, onKill }: CharacterCardProps) => {
+const CharacterCard = ({ character, selected, onToggle, onKill, onSetDeathScene }: CharacterCardProps) => {
   const [showScript, setShowScript] = useState(false);
+  const [pendingKillScene, setPendingKillScene] = useState<number>(1);
   const isDead = !character.is_alive;
 
   const handleGenerateScript = (e: React.MouseEvent) => {
