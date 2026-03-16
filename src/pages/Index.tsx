@@ -30,7 +30,7 @@ const Index = () => {
     });
   }, []);
 
-  const toggleKill = useCallback((id: string) => {
+  const toggleKill = useCallback((id: string, deathScene?: number) => {
     setCharacters((prev) =>
       prev.map((c) => {
         if (c.id !== id) return c;
@@ -38,12 +38,26 @@ const Index = () => {
         toast.success(
           nowAlive
             ? `REVIVED: ${c.name} returned to active roster.`
-            : `ELIMINATED: ${c.name} marked KIA.`
+            : `ELIMINATED: ${c.name} marked KIA${deathScene ? ` (Scene ${deathScene})` : ""}.`
         );
         return {
           ...c,
           is_alive: nowAlive,
-          status: nowAlive ? "Active" : `Killed`,
+          status: nowAlive ? "Active" : `Killed (Scene ${deathScene || "?"})`,
+          death_scene: nowAlive ? undefined : deathScene,
+        };
+      })
+    );
+  }, []);
+
+  const setDeathScene = useCallback((id: string, scene: number) => {
+    setCharacters((prev) =>
+      prev.map((c) => {
+        if (c.id !== id) return c;
+        return {
+          ...c,
+          death_scene: scene,
+          status: c.is_alive ? c.status : `Killed (Scene ${scene})`,
         };
       })
     );
@@ -154,7 +168,8 @@ const Index = () => {
                       character={char}
                       selected={selectedIds.has(char.id)}
                       onToggle={() => toggleAsset(char.id)}
-                      onKill={() => toggleKill(char.id)}
+                      onKill={(deathScene) => toggleKill(char.id, deathScene)}
+                      onSetDeathScene={(scene) => setDeathScene(char.id, scene)}
                     />
                   ))}
                 </AnimatePresence>
@@ -174,13 +189,14 @@ const Index = () => {
                   <div className="grid grid-cols-3 gap-3 md:grid-cols-4">
                     <AnimatePresence mode="popLayout">
                       {eliminated.map((char) => (
-                        <CharacterCard
-                          key={char.id}
-                          character={char}
-                          selected={selectedIds.has(char.id)}
-                          onToggle={() => toggleAsset(char.id)}
-                          onKill={() => toggleKill(char.id)}
-                        />
+                      <CharacterCard
+                        key={char.id}
+                        character={char}
+                        selected={selectedIds.has(char.id)}
+                        onToggle={() => toggleAsset(char.id)}
+                        onKill={(deathScene) => toggleKill(char.id, deathScene)}
+                        onSetDeathScene={(scene) => setDeathScene(char.id, scene)}
+                      />
                       ))}
                     </AnimatePresence>
                   </div>

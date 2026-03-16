@@ -28,6 +28,7 @@ export interface CharacterElement {
   status: string;
   is_alive: boolean;
   survival_priority: number;
+  death_scene?: number; // Scene 1-6 where character dies
   image: string;
 }
 
