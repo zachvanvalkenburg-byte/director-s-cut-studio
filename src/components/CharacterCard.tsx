@@ -92,10 +92,24 @@ const CharacterCard = ({ character, selected, onToggle, onKill, onSetDeathScene 
           </motion.div>
         )}
 
-        {/* KIA badge */}
+        {/* KIA badge + death scene */}
         {isDead && (
-          <div className="absolute left-2 top-2 rounded-sm bg-destructive/80 px-1.5 py-0.5 font-mono text-[8px] uppercase tracking-widest text-destructive-foreground backdrop-blur-sm">
-            ✕ ELIMINATED
+          <div className="absolute left-2 top-2 flex items-center gap-1.5">
+            <div className="rounded-sm bg-destructive/80 px-1.5 py-0.5 font-mono text-[8px] uppercase tracking-widest text-destructive-foreground backdrop-blur-sm">
+              ✕ ELIMINATED
+            </div>
+            <select
+              onClick={(e) => e.stopPropagation()}
+              onChange={handleDeathSceneChange}
+              value={character.death_scene || 1}
+              className="h-5 rounded-sm bg-destructive/60 px-1 font-mono text-[8px] text-destructive-foreground backdrop-blur-sm outline-none cursor-pointer"
+            >
+              {[1, 2, 3, 4, 5, 6].map((s) => (
+                <option key={s} value={s} className="bg-background text-foreground">
+                  S{s}
+                </option>
+              ))}
+            </select>
           </div>
         )}
 
