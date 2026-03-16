@@ -1,6 +1,6 @@
 import charZach from "@/assets/char-zach.jpg";
 import charKyle from "@/assets/char-kyle.jpg";
-import charAltima from "@/assets/char-altima.jpg";
+import charAltima from "@/assets/char-keisha-altima.jpg";
 import charAbbyLee from "@/assets/char-abby-lee.jpg";
 import charLuigi from "@/assets/char-luigi.jpg";
 import charArtClown from "@/assets/char-art-clown.jpg";
