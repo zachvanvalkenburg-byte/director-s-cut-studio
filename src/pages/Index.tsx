@@ -1,6 +1,10 @@
-import SceneSidebar from "@/components/SceneSidebar";
+import { useState, useCallback } from "react";
+import SceneSidebar, { scenes } from "@/components/SceneSidebar";
 import CharacterCard from "@/components/CharacterCard";
 import PromptGenerator from "@/components/PromptGenerator";
+import StyleBiblePanel from "@/components/StyleBiblePanel";
+import { DEFAULT_STYLE_BIBLE, generateScenePrompt } from "@/lib/styleBible";
+import { toast } from "sonner";
 
 import charZach from "@/assets/char-zach.jpg";
 import charKeisha from "@/assets/char-keisha.jpg";
@@ -19,12 +23,45 @@ const assets = [
 ];
 
 const Index = () => {
+  const [activeScene, setActiveScene] = useState(1);
+  const [selectedAssetIds, setSelectedAssetIds] = useState<Set<string>>(new Set());
+  const [generatedPrompt, setGeneratedPrompt] = useState("");
+
+  const toggleAsset = useCallback((assetId: string) => {
+    setSelectedAssetIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(assetId)) {
+        next.delete(assetId);
+      } else {
+        next.add(assetId);
+      }
+      return next;
+    });
+  }, []);
+
+  const handleGenerate = useCallback(() => {
+    const scene = scenes.find((s) => s.id === activeScene);
+    if (!scene) return;
+
+    const selectedAssets = assets.filter((a) => selectedAssetIds.has(a.assetId));
+
+    const prompt = generateScenePrompt(
+      scene,
+      selectedAssets,
+      DEFAULT_STYLE_BIBLE,
+      "" // custom directives handled inside PromptGenerator display
+    );
+
+    setGeneratedPrompt(prompt);
+    toast.success(`PROMPT_GENERATED: Scene ${String(scene.id).padStart(2, "0")} compiled.`);
+  }, [activeScene, selectedAssetIds]);
+
+  const canGenerate = selectedAssetIds.size > 0;
+
   return (
     <div className="flex h-screen w-full overflow-hidden bg-background">
-      {/* Scene Sidebar */}
-      <SceneSidebar />
+      <SceneSidebar activeScene={activeScene} onSceneSelect={setActiveScene} />
 
-      {/* Main Content */}
       <main className="flex flex-1 flex-col gap-6 overflow-y-auto p-6">
         {/* Header */}
         <div className="flex items-end justify-between">
@@ -36,20 +73,39 @@ const Index = () => {
               Character Asset Library
             </p>
           </div>
-          <span className="font-mono text-[10px] text-muted-foreground">
-            {assets.length} ASSETS_LOADED
-          </span>
+          <div className="flex items-center gap-4">
+            {selectedAssetIds.size > 0 && (
+              <span className="font-mono text-[10px] text-primary">
+                {selectedAssetIds.size} SELECTED
+              </span>
+            )}
+            <span className="font-mono text-[10px] text-muted-foreground">
+              {assets.length} ASSETS_LOADED
+            </span>
+          </div>
         </div>
 
         {/* Asset Grid */}
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
           {assets.map((asset) => (
-            <CharacterCard key={asset.assetId} {...asset} />
+            <CharacterCard
+              key={asset.assetId}
+              {...asset}
+              selected={selectedAssetIds.has(asset.assetId)}
+              onToggle={() => toggleAsset(asset.assetId)}
+            />
           ))}
         </div>
 
+        {/* Knowledge Base: Style Bible */}
+        <StyleBiblePanel rules={DEFAULT_STYLE_BIBLE} />
+
         {/* Prompt Generator */}
-        <PromptGenerator />
+        <PromptGenerator
+          generatedPrompt={generatedPrompt}
+          onGenerate={handleGenerate}
+          canGenerate={canGenerate}
+        />
       </main>
     </div>
   );
