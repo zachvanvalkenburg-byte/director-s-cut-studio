@@ -8,6 +8,8 @@ import StyleBiblePanel from "@/components/StyleBiblePanel";
 import MakeSyncButton from "@/components/MakeSyncButton";
 import MasterExportButton from "@/components/MasterExportButton";
 import InvideoAssemblyTab from "@/components/InvideoAssemblyTab";
+import ProductionScriptModal from "@/components/ProductionScriptModal";
+import ExportAudioScript from "@/components/ExportAudioScript";
 import KlingCopyBox from "@/components/KlingCopyBox";
 import { DEFAULT_STYLE_BIBLE, generateScenePrompt } from "@/lib/styleBible";
 import { defaultCharacterElements, type CharacterElement } from "@/lib/characters";
@@ -209,6 +211,13 @@ const Index = () => {
               selectedCharacters={selectedChars}
               activeScene={activeSceneData}
             />
+
+            <ProductionScriptModal
+              scene={activeSceneData}
+              characters={characters}
+            />
+
+            <ExportAudioScript scene={activeSceneData} />
 
             <StyleBiblePanel rules={DEFAULT_STYLE_BIBLE} />
 
