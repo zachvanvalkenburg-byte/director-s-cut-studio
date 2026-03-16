@@ -202,6 +202,11 @@ const Index = () => {
               canGenerate={canGenerate}
             />
 
+            <MasterExportButton
+              characters={characters}
+              activeScene={activeSceneData}
+            />
+
             <MakeSyncButton
               sceneTitle={activeSceneData?.name || "UNKNOWN"}
               characterElements={selectedCharsForSync}
