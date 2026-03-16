@@ -13,10 +13,12 @@ export interface CharacterElement {
   prompt_anchor: string;
   visual_logic: string;
   status: string;
+  is_alive: boolean;
+  survival_priority: number; // 1-10, used for wide shot filler generation
   image: string;
 }
 
-export const characterElements: CharacterElement[] = [
+export const defaultCharacterElements: CharacterElement[] = [
   {
     id: "zach",
     name: "Zach (District 1)",
@@ -25,6 +27,8 @@ export const characterElements: CharacterElement[] = [
     prompt_anchor: "Zach: Cream knit designer sweater, black tactical vest, silver rings, diva disgust, 35mm grit.",
     visual_logic: "Overcast teal-and-orange. Exception: Warm amber cologne lighting for romance scenes.",
     status: "Active",
+    is_alive: true,
+    survival_priority: 9,
     image: charZach,
   },
   {
@@ -35,6 +39,8 @@ export const characterElements: CharacterElement[] = [
     prompt_anchor: "Kyle: Monotone, combat boots, crossed arms, tactical jumpsuit. Static, dead-eyed, never moves.",
     visual_logic: "Locked-off Wes Anderson symmetry. Desaturated cold teal.",
     status: "Active",
+    is_alive: true,
+    survival_priority: 7,
     image: charKyle,
   },
   {
@@ -45,6 +51,8 @@ export const characterElements: CharacterElement[] = [
     prompt_anchor: "2014 Nissan Altima: Missing hubcap, dents, baby-on-board sticker, engine smoke, bass-boosted vibration.",
     visual_logic: "Low-angle shaky cam. High-shutter speed motion blur.",
     status: "Active",
+    is_alive: true,
+    survival_priority: 8,
     image: charAltima,
   },
   {
@@ -55,6 +63,8 @@ export const characterElements: CharacterElement[] = [
     prompt_anchor: "Abby Lee: Motorized wheelchair, screaming, tactical gear. First death, massive fireball explosion.",
     visual_logic: "Saving Private Ryan aesthetic. High-intensity physics. Shockwave ripple.",
     status: "Killed (Scene 2)",
+    is_alive: false,
+    survival_priority: 2,
     image: charAbbyLee,
   },
   {
@@ -65,6 +75,8 @@ export const characterElements: CharacterElement[] = [
     prompt_anchor: "Luigi: 'Stop the Greed' shirt, tactical vest, revolutionary hair, healthcare bill weapon.",
     visual_logic: "Cologne ad lighting. Warm amber, shallow DOF, drifting leaves.",
     status: "Active",
+    is_alive: true,
+    survival_priority: 6,
     image: charLuigi,
   },
   {
@@ -75,6 +87,8 @@ export const characterElements: CharacterElement[] = [
     prompt_anchor: "Art: B&W clown suit, silent, methodical, waving at camera mid-kill, blood splatters.",
     visual_logic: "Nature documentary stillness. High contrast, desaturated shadows.",
     status: "Killed (Scene 4)",
+    is_alive: false,
+    survival_priority: 3,
     image: charArtClown,
   },
 ];
