@@ -36,7 +36,20 @@ const CharacterCard = ({ character, selected, onToggle, onKill, onSetDeathScene 
 
   const handleKillToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
-    onKill?.();
+    if (isDead) {
+      onKill?.();
+    } else {
+      onKill?.(pendingKillScene);
+    }
+  };
+
+  const handleDeathSceneChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    e.stopPropagation();
+    const scene = Number(e.target.value);
+    setPendingKillScene(scene);
+    if (isDead) {
+      onSetDeathScene?.(scene);
+    }
   };
 
   const characterScenes = getScenesForCharacter(character.id);
