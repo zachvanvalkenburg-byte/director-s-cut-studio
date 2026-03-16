@@ -29,6 +29,7 @@ export interface CharacterElement {
   is_alive: boolean;
   survival_priority: number;
   death_scene?: number; // Scene 1-6 where character dies
+  voiceover_script?: string; // Voiceover lines for ElevenLabs TTS
   image: string;
 }
 
@@ -79,6 +80,7 @@ export const defaultCharacterElements: CharacterElement[] = [
     status: "Killed (Scene 2)",
     is_alive: false,
     survival_priority: 2,
+    voiceover_script: "You want to be a star? This is the price. I've buried a hundred dancers prettier than you. My wheelchair has more battle scars than your entire bloodline. When the music stops, I'll still be screaming. RECYCLE... THIS... MOM.",
     image: charAbbyLee,
   },
   {
