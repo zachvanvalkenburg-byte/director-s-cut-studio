@@ -1,3 +1,5 @@
+import type { CharacterElement } from "./characters";
+
 export interface StyleRule {
   id: string;
   category: string;
@@ -26,12 +28,6 @@ export const DEFAULT_STYLE_BIBLE: StyleRule[] = [
   },
 ];
 
-interface AssetInfo {
-  name: string;
-  type: string;
-  assetId: string;
-}
-
 interface SceneInfo {
   id: number;
   name: string;
@@ -39,33 +35,35 @@ interface SceneInfo {
 
 export function generateScenePrompt(
   scene: SceneInfo,
-  selectedAssets: AssetInfo[],
+  selectedCharacters: CharacterElement[],
   styleBible: StyleRule[],
   customDirectives: string
 ): string {
   const lines: string[] = [];
 
-  // Header
   lines.push(`[KLING_AI_PROMPT // SCENE_${String(scene.id).padStart(2, "0")}: ${scene.name}]`);
   lines.push("");
 
-  // Style Bible rules
+  // Style Bible
   lines.push("--- STYLE_BIBLE ---");
   for (const rule of styleBible) {
     lines.push(`${rule.category}: ${rule.value}`);
   }
   lines.push("");
 
-  // Scene elements
-  lines.push("--- SCENE_ELEMENTS ---");
-  if (selectedAssets.length === 0) {
-    lines.push("No assets assigned.");
+  // Character Elements with full data
+  lines.push("--- CHARACTER_ELEMENTS ---");
+  if (selectedCharacters.length === 0) {
+    lines.push("No elements assigned.");
   } else {
-    for (const asset of selectedAssets) {
-      lines.push(`[${asset.type}] ${asset.name} (${asset.assetId})`);
+    for (const char of selectedCharacters) {
+      lines.push(`[${char.archetype.toUpperCase()}] ${char.name} // District ${char.district}`);
+      lines.push(`  STATUS: ${char.status}`);
+      lines.push(`  PROMPT_ANCHOR: ${char.prompt_anchor}`);
+      lines.push(`  VISUAL_LOGIC: ${char.visual_logic}`);
+      lines.push("");
     }
   }
-  lines.push("");
 
   // Custom directives
   if (customDirectives.trim()) {

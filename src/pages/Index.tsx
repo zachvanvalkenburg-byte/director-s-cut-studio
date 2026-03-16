@@ -30,8 +30,7 @@ const Index = () => {
     const scene = scenes.find((s) => s.id === activeScene);
     if (!scene) return;
     const selected = characterElements.filter((c) => selectedIds.has(c.id));
-    const assetInfo = selected.map((c) => ({ name: c.name, type: c.archetype, assetId: c.id }));
-    const prompt = generateScenePrompt(scene, assetInfo, DEFAULT_STYLE_BIBLE, "");
+    const prompt = generateScenePrompt(scene, selected, DEFAULT_STYLE_BIBLE, "");
     setGeneratedPrompt(prompt);
     toast.success(`PROMPT_GENERATED: Scene ${String(scene.id).padStart(2, "0")} compiled.`);
   }, [activeScene, selectedIds]);
