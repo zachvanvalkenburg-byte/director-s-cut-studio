@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, FileText, X, Copy, Skull } from "lucide-react";
+import { Check, FileText, X, Copy, Skull, ExternalLink, Image } from "lucide-react";
 import { toast } from "sonner";
 import type { CharacterElement } from "@/lib/characters";
 import { getScenesForCharacter } from "@/lib/sceneScripts";
