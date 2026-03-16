@@ -4,6 +4,10 @@ import charAltima from "@/assets/char-keisha-altima.jpg";
 import charAbbyLee from "@/assets/char-abby-lee.jpg";
 import charLuigi from "@/assets/char-luigi.jpg";
 import charArtClown from "@/assets/char-art-clown.jpg";
+import charSteveBurns from "@/assets/char-steve-burns.jpg";
+import charBritney from "@/assets/char-britney.jpg";
+import charTyra from "@/assets/char-tyra.jpg";
+import charTimothee from "@/assets/char-timothee.jpg";
 
 export interface CharacterElement {
   id: string;
@@ -90,5 +94,53 @@ export const defaultCharacterElements: CharacterElement[] = [
     is_alive: false,
     survival_priority: 3,
     image: charArtClown,
+  },
+  {
+    id: "steve_burns",
+    name: "Steve Burns",
+    district: 4,
+    archetype: "The Sleeper Agent",
+    prompt_anchor: "Steve: Green field jacket over striped shirt, calm fatherly demeanor masking tactical awareness, notebook as weapon, searching eyes. 35mm grit.",
+    visual_logic: "Nostalgic warm tones bleeding into desaturated teal. Handheld, intimate framing.",
+    status: "Active",
+    is_alive: true,
+    survival_priority: 5,
+    image: charSteveBurns,
+  },
+  {
+    id: "britney",
+    name: "Britney Spears",
+    district: 9,
+    archetype: "The Comeback Weapon",
+    prompt_anchor: "Britney: Sparkly tactical bodysuit, fierce expression, microphone grip, rhinestone combat armor. Pop star turned war machine.",
+    visual_logic: "Strobe-flash editing. High-contrast teal with bursts of hot orange. Music video meets warzone.",
+    status: "Active",
+    is_alive: true,
+    survival_priority: 7,
+    image: charBritney,
+  },
+  {
+    id: "tyra",
+    name: "Tyra Banks",
+    district: 6,
+    archetype: "The Apex Judge",
+    prompt_anchor: "Tyra: Haute couture tactical armor, towering presence, smizing through the chaos. Weaponized confidence, runway walk through rubble.",
+    visual_logic: "High fashion editorial lighting meets battlefield grit. Dutch angles. Dramatic slow-motion.",
+    status: "Active",
+    is_alive: true,
+    survival_priority: 4,
+    image: charTyra,
+  },
+  {
+    id: "timothee",
+    name: "Timothée Chalamet",
+    district: 2,
+    archetype: "The Beautiful Martyr",
+    prompt_anchor: "Timothée: Vintage military coat over silk shirt, tousled curls, brooding artistic pain. Too pretty for war, knows it, doesn't care.",
+    visual_logic: "Cologne ad lighting. Warm amber backlight, shallow DOF, wind in hair. Art house meets trenches.",
+    status: "Active",
+    is_alive: true,
+    survival_priority: 8,
+    image: charTimothee,
   },
 ];
