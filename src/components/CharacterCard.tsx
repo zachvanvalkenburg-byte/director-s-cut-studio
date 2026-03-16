@@ -203,6 +203,10 @@ const CharacterCard = ({ character, selected, onToggle, onKill, onSetDeathScene,
                   KLING
                 </motion.button>
               </div>
+              <VFXReviewPanel
+                character={character}
+                onUpdateCharacter={(updates) => onUpdateCharacter?.(updates)}
+              />
             </div>
           )}
         </div>
