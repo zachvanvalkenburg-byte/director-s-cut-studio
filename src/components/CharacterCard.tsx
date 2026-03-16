@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, FileText, X, Copy } from "lucide-react";
+import { Check, FileText, X, Copy, Skull } from "lucide-react";
 import { toast } from "sonner";
 import type { CharacterElement } from "@/lib/characters";
 import { getScenesForCharacter } from "@/lib/sceneScripts";
@@ -9,11 +9,12 @@ interface CharacterCardProps {
   character: CharacterElement;
   selected?: boolean;
   onToggle?: () => void;
+  onKill?: () => void;
 }
 
-const CharacterCard = ({ character, selected, onToggle }: CharacterCardProps) => {
-  const isKilled = character.status.startsWith("Killed");
+const CharacterCard = ({ character, selected, onToggle, onKill }: CharacterCardProps) => {
   const [showScript, setShowScript] = useState(false);
+  const isDead = !character.is_alive;
 
   const handleGenerateScript = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -31,11 +32,17 @@ const CharacterCard = ({ character, selected, onToggle }: CharacterCardProps) =>
     toast.success("NARRATOR_LINE_COPIED");
   };
 
+  const handleKillToggle = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onKill?.();
+  };
+
   const characterScenes = getScenesForCharacter(character.id);
 
   return (
     <>
       <motion.div
+        layout
         onClick={onToggle}
         className={`relative aspect-square cursor-pointer overflow-hidden rounded-lg bg-surface transition-shadow ${
           selected
@@ -50,8 +57,8 @@ const CharacterCard = ({ character, selected, onToggle }: CharacterCardProps) =>
         <img
           src={character.image}
           alt={character.name}
-          className={`h-full w-full object-cover transition-all duration-300 ${
-            isKilled
+          className={`h-full w-full object-cover transition-all duration-500 ${
+            isDead
               ? "opacity-40 grayscale"
               : selected
               ? "opacity-100 grayscale-0"
@@ -60,7 +67,7 @@ const CharacterCard = ({ character, selected, onToggle }: CharacterCardProps) =>
         />
 
         {/* Selection check */}
-        {selected && (
+        {selected && !isDead && (
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -71,11 +78,31 @@ const CharacterCard = ({ character, selected, onToggle }: CharacterCardProps) =>
         )}
 
         {/* KIA badge */}
-        {isKilled && !selected && (
+        {isDead && (
           <div className="absolute left-2 top-2 rounded-sm bg-destructive/80 px-1.5 py-0.5 font-mono text-[8px] uppercase tracking-widest text-destructive-foreground backdrop-blur-sm">
-            ✕ KIA
+            ✕ ELIMINATED
           </div>
         )}
+
+        {/* Survival priority indicator */}
+        <div className="absolute right-2 top-2 flex items-center gap-1.5">
+          <div className="rounded-sm bg-background/60 px-1.5 py-0.5 font-mono text-[8px] text-muted-foreground backdrop-blur-md">
+            SP:{character.survival_priority}
+          </div>
+          {/* Kill toggle */}
+          <motion.button
+            onClick={handleKillToggle}
+            className={`flex h-5 w-5 items-center justify-center rounded-sm backdrop-blur-md transition-colors ${
+              isDead
+                ? "bg-destructive/60 text-destructive-foreground hover:bg-primary/60"
+                : "bg-background/60 text-muted-foreground hover:bg-destructive/60 hover:text-destructive-foreground"
+            }`}
+            whileTap={{ scale: 0.9 }}
+            title={isDead ? "Revive tribute" : "Eliminate tribute"}
+          >
+            <Skull className="h-3 w-3" />
+          </motion.button>
+        </div>
 
         {/* Bottom gradient overlay */}
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/95 via-background/50 to-transparent p-3 pb-2">
@@ -88,22 +115,20 @@ const CharacterCard = ({ character, selected, onToggle }: CharacterCardProps) =>
               {character.archetype}
             </span>
           </div>
-          <h3 className="text-sm font-semibold text-foreground truncate">{character.name}</h3>
+          <h3 className={`text-sm font-semibold truncate ${isDead ? "text-muted-foreground line-through" : "text-foreground"}`}>
+            {character.name}
+          </h3>
 
-          {/* Generate Script button */}
-          <motion.button
-            onClick={handleGenerateScript}
-            className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-sm bg-primary/10 py-1.5 font-mono text-[9px] uppercase tracking-widest text-primary transition-colors hover:bg-primary/25"
-            whileTap={{ scale: 0.96 }}
-          >
-            <FileText className="h-3 w-3" />
-            Generate Script
-          </motion.button>
-        </div>
-
-        {/* ID badge */}
-        <div className="absolute right-2 top-2 rounded-sm bg-background/60 px-1.5 py-0.5 font-mono text-[9px] text-muted-foreground backdrop-blur-md">
-          {character.id.toUpperCase()}
+          {!isDead && (
+            <motion.button
+              onClick={handleGenerateScript}
+              className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-sm bg-primary/10 py-1.5 font-mono text-[9px] uppercase tracking-widest text-primary transition-colors hover:bg-primary/25"
+              whileTap={{ scale: 0.96 }}
+            >
+              <FileText className="h-3 w-3" />
+              Generate Script
+            </motion.button>
+          )}
         </div>
       </motion.div>
 
@@ -125,7 +150,6 @@ const CharacterCard = ({ character, selected, onToggle }: CharacterCardProps) =>
               className="mx-4 max-h-[80vh] w-full max-w-lg overflow-y-auto rounded-lg bg-surface p-5 shadow-surface-hover"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Modal header */}
               <div className="mb-4 flex items-start justify-between">
                 <div>
                   <div className="mb-1 flex items-center gap-2">
@@ -136,11 +160,6 @@ const CharacterCard = ({ character, selected, onToggle }: CharacterCardProps) =>
                     <span className="font-mono text-[9px] text-accent/70">
                       {character.archetype}
                     </span>
-                    {isKilled && (
-                      <span className="rounded-sm bg-destructive/80 px-1 py-0.5 font-mono text-[7px] uppercase text-destructive-foreground">
-                        KIA
-                      </span>
-                    )}
                   </div>
                   <h2 className="text-base font-semibold tracking-tight text-foreground">
                     {character.name}
@@ -157,7 +176,6 @@ const CharacterCard = ({ character, selected, onToggle }: CharacterCardProps) =>
                 </button>
               </div>
 
-              {/* Narrator lines per scene */}
               <div className="flex flex-col gap-3">
                 <label className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                   NARRATOR_LINES // {characterScenes.length} SCENE{characterScenes.length !== 1 ? "S" : ""}
@@ -169,10 +187,7 @@ const CharacterCard = ({ character, selected, onToggle }: CharacterCardProps) =>
                   </p>
                 ) : (
                   characterScenes.map((scene) => (
-                    <div
-                      key={scene.sceneId}
-                      className="rounded-md bg-background/40 p-3"
-                    >
+                    <div key={scene.sceneId} className="rounded-md bg-background/40 p-3">
                       <div className="mb-2 flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span className="font-mono text-[10px] text-primary">
