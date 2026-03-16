@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
 import SceneSidebar, { scenes } from "@/components/SceneSidebar";
 import CharacterCard from "@/components/CharacterCard";
@@ -6,6 +6,7 @@ import PromptGenerator from "@/components/PromptGenerator";
 import StyleBiblePanel from "@/components/StyleBiblePanel";
 import MakeSyncButton from "@/components/MakeSyncButton";
 import InvideoAssemblyTab from "@/components/InvideoAssemblyTab";
+import KlingCopyBox from "@/components/KlingCopyBox";
 import { DEFAULT_STYLE_BIBLE, generateScenePrompt } from "@/lib/styleBible";
 import { characterElements } from "@/lib/characters";
 import { toast } from "sonner";
