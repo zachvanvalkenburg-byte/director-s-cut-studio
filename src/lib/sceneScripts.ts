@@ -11,15 +11,15 @@ export const sceneScripts: SceneScript[] = [
   {
     sceneId: 1,
     sceneName: "THE_SETUP",
-    directorsNotes: "Open cold. No music. Ambient city hum only. Zach enters frame from the left, camera tracks at waist-height. Hold on his face for 3 beats before he speaks. Let the silence do the work.",
-    narratorScript: "The city doesn't sleep. It watches. And tonight, it has its eyes on one man who made the mistake of looking back.",
+    directorsNotes: "Tributes rise from underground tubes on metal launch platforms arranged in a circle around the golden Cornucopia. Camera tilts vertically as each tribute ascends. Holographic countdown timer displays red numbers from 60. Absolute silence — only wind and distant mockingjay calls. Hold on Zach's face as he scans the arena. Kyle stands statue-still. No one moves until the gong.",
+    narratorScript: "Twenty-four platforms. Twenty-four heartbeats. The arena doesn't care about any of them. The countdown begins, and the forest watches from the edge — patient, indifferent, waiting to swallow whoever survives.",
     characterIds: ["zach", "kyle"],
   },
   {
     sceneId: 2,
-    sceneName: "PURSUIT_BEGINS",
-    directorsNotes: "Quick cuts. Handheld shakes increase. Keisha's Altima tears through wet streets — use low-angle tracking shot from curb level. Orange sodium lights streak across the windshield. No dialogue, only engine and rain.",
-    narratorScript: "She drove like the road owed her something. Every turn sharper than the last, every red light a suggestion she chose to ignore.",
+    sceneName: "BLOODBATH",
+    directorsNotes: "The gong sounds. Tributes sprint toward the Cornucopia across open grass. Abby Lee's wheelchair launches from her platform — motors screaming. Supplies scattered on the ground. Quick cuts between tributes grabbing weapons. Keisha's Altima somehow in the arena (airdropped by Capitol). Abby Lee reaches the Cornucopia but a fireball detonation from a mine engulfs her wheelchair. First kill of the Games.",
+    narratorScript: "The gong shattered the silence and the arena became a mouth. Abby Lee's wheelchair tore across the grass like a tank — but the mines don't care about momentum. The first fireball painted the Cornucopia gold and red.",
     characterIds: ["keisha_altima", "abby_lee"],
   },
   {

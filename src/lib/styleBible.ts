@@ -30,24 +30,50 @@ export const DEFAULT_STYLE_BIBLE: StyleRule[] = [
 
 // Scene-specific style overrides
 export const SCENE_STYLE_OVERRIDES: Record<number, StyleRule[]> = {
+  1: [
+    {
+      id: "arena-s1",
+      category: "ENVIRONMENT",
+      label: "Launch Arena",
+      value: "Circular launch platforms in a ring around a golden Cornucopia. Metal tribute tubes/glass cylinders rise from underground. Dense forest treeline 200m out. Overcast sky, cold morning light. Digital countdown timer projected on holographic display above Cornucopia — red numbers ticking from 60 to 0.",
+    },
+    {
+      id: "camera-s1",
+      category: "CAMERA",
+      label: "Launch Sequence Cam",
+      value: "Slow vertical tilt as tribute rises from underground tube. Static locked-off wide shot of full arena ring during countdown. Quick snap-zooms to individual faces. No handheld until the gong sounds.",
+    },
+    {
+      id: "tone-s1",
+      category: "SACRED_RULE",
+      label: "Countdown Tension",
+      value: "Absolute silence except ambient wind and distant mockingjay calls. No score. Tension built through stillness and held breath. The gong is the only sound cue for action.",
+    },
+  ],
   2: [
+    {
+      id: "arena-s2",
+      category: "ENVIRONMENT",
+      label: "Cornucopia Bloodbath",
+      value: "Golden horn-shaped Cornucopia at arena center, supplies scattered on grass. Tributes sprinting from launch platforms. Forest edge visible. Arena floor is packed earth and grass — NOT mud or trenches. Futuristic game arena, not a battlefield.",
+    },
     {
       id: "shutter-s2",
       category: "SHUTTER",
       label: "Shutter Angle",
-      value: "45–90 degrees. Staccato jittery motion, D-Day landing stutter-step. No motion blur — every frame razor-sharp and violent.",
+      value: "45–90 degrees. Staccato jittery motion, razor-sharp frames. No motion blur — every frame captures the panic of the initial sprint.",
     },
     {
       id: "color-s2",
       category: "COLOR",
       label: "Bleach Bypass",
-      value: "Bleach bypass effect, desaturated teals, high-contrast shadows. Crushed blacks, blown highlights. ENR skip-bleach emulation.",
+      value: "Bleach bypass effect, desaturated teals, high-contrast shadows. Crushed blacks, blown highlights. Cold morning arena light.",
     },
     {
       id: "camera-s2",
       category: "CAMERA",
-      label: "Combat Cam",
-      value: "Handheld combat-cam with mud/water droplets on lens. Erratic whip pans, flinch-zooms on explosions. Lens never clean.",
+      label: "Bloodbath Cam",
+      value: "Handheld chaos cam after gong sounds. Erratic whip pans between tributes. Low-angle tracking shots of sprinting feet on grass. Flinch-zooms on impacts. Aerial drone shot establishing full arena geography.",
     },
   ],
 };
