@@ -4,6 +4,10 @@ import charAltima from "@/assets/char-keisha-altima.jpg";
 import charAbbyLee from "@/assets/char-abby-lee.jpg";
 import charLuigi from "@/assets/char-luigi.jpg";
 import charArtClown from "@/assets/char-art-clown.jpg";
+import charSteveBurns from "@/assets/char-steve-burns.jpg";
+import charBritney from "@/assets/char-britney.jpg";
+import charTyra from "@/assets/char-tyra.jpg";
+import charTimothee from "@/assets/char-timothee.jpg";
 
 export interface CharacterElement {
   id: string;
