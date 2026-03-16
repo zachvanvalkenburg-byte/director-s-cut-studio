@@ -9,7 +9,8 @@ interface CharacterCardProps {
   character: CharacterElement;
   selected?: boolean;
   onToggle?: () => void;
-  onKill?: () => void;
+  onKill?: (deathScene?: number) => void;
+  onSetDeathScene?: (scene: number) => void;
 }
 
 const CharacterCard = ({ character, selected, onToggle, onKill }: CharacterCardProps) => {
