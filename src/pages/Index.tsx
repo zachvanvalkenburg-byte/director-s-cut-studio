@@ -37,10 +37,14 @@ const Index = () => {
   }, [activeScene, selectedIds]);
 
   const canGenerate = selectedIds.size > 0;
-  const activeSceneData = scenes.find((s) => s.id === activeScene);
-  const selectedChars = characterElements
+  const activeSceneData = scenes.find((s) => s.id === activeScene)!;
+  const selectedCharsForSync = characterElements
     .filter((c) => selectedIds.has(c.id))
     .map(({ id, name, archetype }) => ({ name, type: archetype, assetId: id }));
+  const selectedChars = useMemo(
+    () => characterElements.filter((c) => selectedIds.has(c.id)),
+    [selectedIds]
+  );
 
   const tabs: { id: DashboardTab; label: string }[] = [
     { id: "assets", label: "ASSET_LIBRARY" },
