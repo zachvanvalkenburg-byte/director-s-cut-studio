@@ -112,7 +112,7 @@ export const defaultCharacterElements: CharacterElement[] = [
     name: "Britney Spears",
     district: 9,
     archetype: "The Comeback Weapon",
-    prompt_anchor: "Britney: Sparkly tactical bodysuit, fierce expression, microphone grip, rhinestone combat armor. Pop star turned war machine.",
+    prompt_anchor: "Britney: Orange polka dot top, two knives gripped low, feral grin, war-paint smeared mascara. Pop star turned feral weapon.",
     visual_logic: "Strobe-flash editing. High-contrast teal with bursts of hot orange. Music video meets warzone.",
     status: "Active",
     is_alive: true,
