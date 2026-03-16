@@ -212,6 +212,13 @@ const Index = () => {
               activeScene={activeSceneData}
             />
 
+            <ProductionScriptModal
+              scene={activeSceneData}
+              characters={characters}
+            />
+
+            <ExportAudioScript scene={activeSceneData} />
+
             <StyleBiblePanel rules={DEFAULT_STYLE_BIBLE} />
 
             <PromptGenerator
