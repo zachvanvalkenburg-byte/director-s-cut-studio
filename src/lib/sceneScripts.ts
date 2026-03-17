@@ -11,7 +11,7 @@ export const sceneScripts: SceneScript[] = [
   {
     sceneId: 1,
     sceneName: "THE_SETUP",
-    directorsNotes: "Tributes rise from underground tubes on metal launch platforms arranged in a circle around the golden Cornucopia. Camera tilts vertically as each tribute ascends. Holographic countdown timer displays red numbers from 60. Absolute silence — only wind and distant mockingjay calls. Hold on Zach's face as he scans the arena. Kyle stands statue-still. No one moves until the gong.",
+    directorsNotes: "Tributes rise from underground tubes on metal launch platforms arranged in a circle around the golden Cornucopia. Camera tilts vertically as each tribute ascends. Holographic countdown timer displays red numbers from 60. Holographic UI overlays flicker near each pedestal — district numbers, vitals, glitching red data. Absolute silence — only wind, distant mockingjay calls, and visible breath in cold air. Hold on Zach's face as he scans the arena. Kyle stands statue-still. No one moves until the gong. AUDIO: Pre-gong is dead silence. At gong: 808 sub-bass hit, then industrial percussive texture under the sprint — metallic clangs, boot impacts on rusted iron, trap hi-hat rolls on quick cuts. No melody, no orchestra. Speed ramp: overcranked slow-motion on first step off platform, snap to real-time chaos. Every surface reads as lethal — rusted edges, wet metal, sharp angles. No warmth anywhere in frame until blood is drawn.",
     narratorScript: "Twenty-four platforms. Twenty-four heartbeats. The arena doesn't care about any of them. The countdown begins, and the forest watches from the edge — patient, indifferent, waiting to swallow whoever survives.",
     characterIds: ["zach", "kyle"],
   },

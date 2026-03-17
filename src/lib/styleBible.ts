@@ -47,19 +47,25 @@ export const SCENE_STYLE_OVERRIDES: Record<number, StyleRule[]> = {
       id: "arena-s1",
       category: "ENVIRONMENT",
       label: "Launch Arena",
-      value: "Circular launch platforms arranged in a ring around the golden Cornucopia. Rusted iron pedestals on damp packed earth. Tall dead yellow-brown grass surrounding the platforms. Metal tribute tubes/glass cylinders rise from underground — tributes ascend inside them. Dense forest treeline 200m out. Flat overcast sky, cold morning light. Holographic countdown timer projected above Cornucopia — red numbers ticking from 60 to 0.",
+      value: "Circular launch platforms arranged in a ring around the golden Cornucopia. Rusted iron pedestals on damp packed earth. Tall dead yellow-brown grass surrounding the platforms. Metal tribute tubes/glass cylinders rise from underground — tributes ascend inside them. Dense forest treeline 200m out. Flat overcast sky, cold morning light. Holographic countdown timer projected above Cornucopia — red numbers ticking from 60 to 0. Holographic UI overlays near each pedestal — district numbers, vitals data, glitching red indicators.",
     },
     {
       id: "camera-s1",
       category: "CAMERA",
       label: "Launch Sequence Cam",
-      value: "Slow vertical tilt as tribute rises from underground glass cylinder. STATIC LOCKED-OFF wide shot of full arena platform ring during countdown — no movement, no handheld. Quick snap-zooms to individual faces during silence. Camera does NOT go handheld until the exact frame the gong sounds.",
+      value: "Slow vertical tilt as tribute rises from underground glass cylinder. STATIC LOCKED-OFF wide shot of full arena platform ring during countdown — no movement, no handheld. Quick snap-zooms to individual faces during silence. Camera does NOT go handheld until the exact frame the gong sounds. Speed ramp: overcranked slow-motion on first step off platform, then snap to real-time chaos.",
     },
     {
       id: "tone-s1",
       category: "SACRED_RULE",
       label: "Countdown Tension",
       value: "Absolute silence except ambient wind and distant mockingjay calls. No score. No music. Tension built entirely through stillness and held breath. The gong is the ONLY sound cue for action. Do not cut early — hold every take until it hurts.",
+    },
+    {
+      id: "audio-s1",
+      category: "AUDIO_DESIGN",
+      label: "Scene 1 Sound Design",
+      value: "PRE-GONG: Dead silence. Wind. Distant mockingjay calls. Breath visible, audible. POST-GONG: Immediate low 808 sub-bass hit on the gong itself. Industrial percussive texture under sprint — metallic clangs, boot impacts on rusted iron. No melody. Distorted bass riser building as tributes close distance to Cornucopia. Trap hi-hat rolls on quick cuts between faces.",
     },
     {
       id: "transition-s1",
@@ -71,7 +77,7 @@ export const SCENE_STYLE_OVERRIDES: Record<number, StyleRule[]> = {
       id: "negative-s1",
       category: "NEGATIVE_PROMPT",
       label: "Scene 1 Negs",
-      value: "NEVER: Digital-clean rendering. NEVER: Saturated/vibrant colors. NEVER: Heroic golden-hour sunlight. NEVER: Smiling or comedic expressions. NEVER: Clean/pristine wardrobe. NEVER: Smooth/airbrushed skin. NEVER: Handheld camera BEFORE the gong sounds. NEVER: Score or non-diegetic music during countdown.",
+      value: "NEVER: Digital-clean rendering. NEVER: Saturated/vibrant colors. NEVER: Heroic golden-hour sunlight. NEVER: Smiling or comedic expressions. NEVER: Clean/pristine wardrobe. NEVER: Smooth/airbrushed skin. NEVER: Handheld camera BEFORE the gong sounds. NEVER: Score or non-diegetic music during countdown. NEVER: Traditional orchestral score. NEVER: Warm tones or orange highlights before blood is drawn.",
     },
   ],
   2: [
