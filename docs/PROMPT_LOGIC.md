@@ -42,8 +42,9 @@ CATEGORY: value
 | Category | Override |
 |----------|----------|
 | **ENVIRONMENT** | Circular launch platforms, golden Cornucopia, metal tribute tubes/glass cylinders, dense forest treeline 200m out, holographic countdown timer (red, 60→0) |
-| **CAMERA** | Slow vertical tilt as tribute rises from tube. Static locked-off wide during countdown. Snap-zooms to faces. No handheld until gong. |
+| **CAMERA** | Slow vertical tilt as tribute rises from tube. Static locked-off wide during countdown. Snap-zooms to faces. No handheld until gong. Speed ramp: overcranked slo-mo on first step, snap to real-time. |
 | **SACRED_RULE** | Absolute silence except ambient wind and mockingjay calls. No score. Tension through stillness. Gong = only action cue. |
+| **AUDIO_DESIGN** | Pre-gong: dead silence, wind, breath. Post-gong: 808 sub-bass hit, industrial percussive texture, metallic clangs, trap hi-hat rolls on quick cuts. No melody. |
 
 ### Scene 2 — BLOODBATH (Cornucopia Sprint)
 

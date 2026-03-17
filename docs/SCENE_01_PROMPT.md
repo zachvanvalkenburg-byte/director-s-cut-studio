@@ -45,6 +45,8 @@ NEVER: Clean/pristine wardrobe
 NEVER: Smooth/airbrushed skin
 NEVER: Handheld camera movement BEFORE the gong sounds
 NEVER: Score or non-diegetic music during countdown sequence
+NEVER: Traditional orchestral score at any point
+NEVER: Warm tones or orange highlights before blood is drawn
 [END_PROMPT]
 ```
 
