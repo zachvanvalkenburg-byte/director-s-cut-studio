@@ -30,13 +30,13 @@ export const DEFAULT_STYLE_BIBLE: StyleRule[] = [
     id: "audio-01",
     category: "AUDIO_DESIGN",
     label: "Global Sound Directive",
-    value: "Sound design over score. No traditional soundtrack. Sub-bass drones, industrial percussive hits, metallic texture. Trap-influenced 808 sub-bass on impacts. Distorted risers for tension builds. Audio should feel modern and lethal — not cinematic orchestra.",
+    value: "Sound design over score. No traditional soundtrack. Sub-bass drones, industrial percussive hits, metallic texture on impacts. Distorted risers for tension builds. Modern and aggressive — not cinematic orchestra.",
   },
   {
-    id: "lethality-01",
-    category: "LETHALITY",
-    label: "Environmental Threat",
-    value: "Every surface looks like it could kill you — rusted edges, wet metal, sharp angles. Breath visible in cold air. No warmth anywhere in frame. Holographic UI overlays on tribute pedestals — vitals, district numbers, glitching red data. Lens flares on cold metal surfaces only.",
+    id: "arena-tech-01",
+    category: "ARENA_TECH",
+    label: "Arena Technology",
+    value: "Modern, technologically advanced arena infrastructure. Clean engineered metal platforms, smooth composite surfaces, precision-machined launch mechanisms. Visible weapons — bladed, ranged, improvised — scattered near Cornucopia and supply caches. Technology should feel sleek and deliberate, designed to kill efficiently.",
   },
 ];
 
