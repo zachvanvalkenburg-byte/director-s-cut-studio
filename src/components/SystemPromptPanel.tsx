@@ -12,11 +12,23 @@ interface SystemPromptPanelProps {
 }
 
 const LOCATION_DATA = {
-  setting: "Appalachian Woods",
-  terrain: "Dense hardwood forest, dead leaves on ground, exposed roots, rocky outcrops",
-  atmosphere: "Mountain mist, overcast sky, cold damp air, low visibility beyond 50m",
-  season: "Late autumn — trees bare or nearly bare, brown/grey palette, no green canopy",
-  sound: "Wind through dead branches, distant water, crunching leaves underfoot",
+  setting: "High-altitude Appalachian Meadow / North Carolina Pine Forest",
+  terrain: "Damp, dark gray earth; mud-slicked paths; tall, dead, yellow-brown grass",
+  flora: "Dense, spindly pine and oak trees; overgrown, unmanaged wilderness",
+  weather: "Constant flat overcast lighting; thick mountain mist; cold, damp atmosphere",
+};
+
+const CINEMATOGRAPHY = {
+  filmStock: "Super 35mm film grit; visible grain; no 'digital clean' look",
+  colorGrade: "Desaturated Bleach-Bypass; crushed blacks; teal-tinted shadows; muted earthy greens",
+  motion: "Handheld 'shaky-cam' documentary style; 45-degree shutter angle (crisp, jittery, panicked motion)",
+  framing: "2.35:1 Anamorphic; claustrophobic close-ups mixed with wide desolate meadow shots",
+};
+
+const PERFORMANCE_DIRECTIVES = {
+  emotionalState: "High-anxiety; pure survival instinct; terrified and exhausted",
+  wardrobe: "Dusty tactical gear; visible sweat and grime; torn fabrics",
+  hardNegatives: "NO smiling; NO vibrant/saturated colors; NO heroic sunlight; NO clean skin",
 };
 
 function generateGeminiPrompt(
