@@ -85,11 +85,10 @@ function generateGeminiPrompt(
     lines.push(`${rule.category} / ${rule.label}: ${rule.value}`);
   });
   lines.push("");
-  lines.push("HARD RULES:");
-  lines.push("• 35mm anamorphic lens — ALL shots");
-  lines.push("• Desaturated teal-and-orange color grading — NO saturated colors");
-  lines.push("• NO smiling — dead serious tone only, no humor, no levity");
-  lines.push("• Handheld camera movement — grounded realism");
+  lines.push("HARD NEGATIVE CONSTRAINTS:");
+  lines.push(`• ${PERFORMANCE_DIRECTIVES.hardNegatives}`);
+  lines.push(`• Emotional State: ${PERFORMANCE_DIRECTIVES.emotionalState}`);
+  lines.push(`• Wardrobe: ${PERFORMANCE_DIRECTIVES.wardrobe}`);
   lines.push("• Hunger Games Arena aesthetic — NOT modern military");
   lines.push("");
 
