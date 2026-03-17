@@ -12,6 +12,7 @@ import InvideoAssemblyTab from "@/components/InvideoAssemblyTab";
 import ProductionScriptModal from "@/components/ProductionScriptModal";
 import ExportAudioScript from "@/components/ExportAudioScript";
 import KlingCopyBox from "@/components/KlingCopyBox";
+import ReferenceIngestorPanel from "@/components/ReferenceIngestorPanel";
 import { DEFAULT_STYLE_BIBLE, generateScenePrompt } from "@/lib/styleBible";
 import { defaultCharacterElements, type CharacterElement } from "@/lib/characters";
 import { toast } from "sonner";
@@ -227,6 +228,8 @@ const Index = () => {
             />
 
             <ExportAudioScript scene={activeSceneData} />
+
+            <ReferenceIngestorPanel />
 
             <SystemPromptPanel characters={characters} activeScene={activeScene} />
 
