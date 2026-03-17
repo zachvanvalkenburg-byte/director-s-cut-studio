@@ -228,6 +228,8 @@ const Index = () => {
 
             <ExportAudioScript scene={activeSceneData} />
 
+            <SystemPromptPanel characters={characters} activeScene={activeScene} />
+
             <StyleBiblePanel rules={DEFAULT_STYLE_BIBLE} />
 
             <PromptGenerator
