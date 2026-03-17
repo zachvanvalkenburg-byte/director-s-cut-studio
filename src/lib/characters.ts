@@ -63,7 +63,7 @@ export const defaultCharacterElements: CharacterElement[] = [
     name: "Keisha & The Altima",
     district: 5,
     archetype: "The Altima Driver",
-    prompt_anchor: "Keisha: One hand on the wheel, doing nails with the other. 2014 Nissan Altima interior with hanging air fresheners, cracked windshield, bass-heavy vibration. High-shutter speed, war-zone grit, desaturated teal-and-orange.",
+    prompt_anchor: "Keisha: Mid-20s, sharp features, box braids pulled back, hoop earrings. Standing on launch platform next to 2014 Nissan Altima (airdropped by Capitol) — driver door open, engine idling, air fresheners swinging from mirror, cracked windshield. Visibly irritated, not scared — sucking teeth, one eyebrow raised at the Cornucopia. Weight shifted to one hip, phone loose in right hand, left hand resting on car door frame. Eyes side-eyeing the tribute to her left with pure annoyance. Jaw tight. This is an inconvenience, not a death sentence. High-shutter speed, war-zone grit, desaturated teal-and-orange.",
     visual_logic: "Low-angle shaky cam. High-shutter speed motion blur. Interior POV from passenger seat.",
     status: "Active",
     is_alive: true,
