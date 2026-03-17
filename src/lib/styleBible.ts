@@ -26,6 +26,18 @@ export const DEFAULT_STYLE_BIBLE: StyleRule[] = [
     label: "Tonal Directive",
     value: "Dead serious tone only. No humor, no levity. Grounded realism.",
   },
+  {
+    id: "audio-01",
+    category: "AUDIO_DESIGN",
+    label: "Global Sound Directive",
+    value: "Sound design over score. No traditional soundtrack. Sub-bass drones, industrial percussive hits, metallic texture. Trap-influenced 808 sub-bass on impacts. Distorted risers for tension builds. Audio should feel modern and lethal — not cinematic orchestra.",
+  },
+  {
+    id: "lethality-01",
+    category: "LETHALITY",
+    label: "Environmental Threat",
+    value: "Every surface looks like it could kill you — rusted edges, wet metal, sharp angles. Breath visible in cold air. No warmth anywhere in frame. Holographic UI overlays on tribute pedestals — vitals, district numbers, glitching red data. Lens flares on cold metal surfaces only.",
+  },
 ];
 
 // Scene-specific style overrides
