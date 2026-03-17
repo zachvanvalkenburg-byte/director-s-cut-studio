@@ -32,6 +32,8 @@ CATEGORY: value
 | **LIGHTING** | Overcast ambient, teal-and-orange color grading, desaturated palette, natural falloff |
 | **CAMERA** | Handheld movement, 35mm anamorphic lens, 24fps, shallow depth of field |
 | **SACRED_RULE** | Dead serious tone only. No humor, no levity. Grounded realism. |
+| **AUDIO_DESIGN** | Sound design over score. Sub-bass drones, industrial percussive hits, trap-influenced 808s on impacts. Distorted risers. Modern and lethal — not cinematic orchestra. |
+| **LETHALITY** | Every surface reads as threat — rusted edges, wet metal, sharp angles. Breath visible. No warmth in frame. Holographic UI overlays on pedestals. |
 
 ## Scene-Specific Overrides
 
