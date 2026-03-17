@@ -174,15 +174,15 @@ const SystemPromptPanel = ({ characters, activeScene }: SystemPromptPanelProps) 
               <div className="grid grid-cols-3 gap-2">
                 <div className="rounded-sm bg-background/30 px-3 py-2">
                   <span className="font-mono text-[8px] uppercase tracking-widest text-muted-foreground">LOCATION</span>
-                  <p className="mt-0.5 text-[11px] text-foreground/80">{LOCATION_DATA.setting}</p>
+                  <p className="mt-0.5 text-[11px] text-foreground/80">Appalachian Meadow / NC Pine Forest</p>
                 </div>
                 <div className="rounded-sm bg-background/30 px-3 py-2">
                   <span className="font-mono text-[8px] uppercase tracking-widest text-muted-foreground">KILL ORDER</span>
                   <p className="mt-0.5 text-[11px] text-foreground/80">{alive.length} alive / {dead.length} KIA</p>
                 </div>
                 <div className="rounded-sm bg-background/30 px-3 py-2">
-                  <span className="font-mono text-[8px] uppercase tracking-widest text-muted-foreground">STYLE</span>
-                  <p className="mt-0.5 text-[11px] text-foreground/80">35mm / Desat / No smile</p>
+                  <span className="font-mono text-[8px] uppercase tracking-widest text-muted-foreground">LOOK</span>
+                  <p className="mt-0.5 text-[11px] text-foreground/80">35mm / Bleach-Bypass / No smile</p>
                 </div>
               </div>
 
