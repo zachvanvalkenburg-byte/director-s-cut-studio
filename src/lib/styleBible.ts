@@ -47,7 +47,7 @@ export const SCENE_STYLE_OVERRIDES: Record<number, StyleRule[]> = {
       id: "arena-s1",
       category: "ENVIRONMENT",
       label: "Launch Arena",
-      value: "Circular launch platforms arranged in a ring around the golden Cornucopia. Rusted iron pedestals on damp packed earth. Tall dead yellow-brown grass surrounding the platforms. Metal tribute tubes/glass cylinders rise from underground — tributes ascend inside them. Dense forest treeline 200m out. Flat overcast sky, cold morning light. Holographic countdown timer projected above Cornucopia — red numbers ticking from 60 to 0. Holographic UI overlays near each pedestal — district numbers, vitals data, glitching red indicators.",
+      value: "Circular launch platforms arranged in a ring around the golden Cornucopia. Metal pedestals on packed earth. Tall dead yellow-brown grass surrounding the platforms. Metal tribute tubes/glass cylinders rise from underground — tributes ascend inside them. Dense forest treeline 200m out. Flat overcast sky, cold morning light. Holographic countdown timer projected above Cornucopia — red numbers ticking from 60 to 0. Visible weapons — blades, bows, tactical gear — scattered near Cornucopia and in orange backpacks.",
     },
     {
       id: "camera-s1",
