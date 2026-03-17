@@ -65,7 +65,7 @@ export const SCENE_STYLE_OVERRIDES: Record<number, StyleRule[]> = {
       id: "audio-s1",
       category: "AUDIO_DESIGN",
       label: "Scene 1 Sound Design",
-      value: "PRE-GONG: Dead silence. Wind. Distant mockingjay calls. Breath visible, audible. POST-GONG: Immediate low 808 sub-bass hit on the gong itself. Industrial percussive texture under sprint — metallic clangs, boot impacts on rusted iron. No melody. Distorted bass riser building as tributes close distance to Cornucopia. Trap hi-hat rolls on quick cuts between faces.",
+      value: "PRE-GONG: Dead silence. Wind. Distant mockingjay calls. POST-GONG: Immediate low sub-bass hit on the gong itself. Industrial percussive texture under sprint — metallic impacts, boot stomps on metal platforms. No melody, no music. Distorted bass riser building as tributes close distance to Cornucopia.",
     },
     {
       id: "transition-s1",
