@@ -30,13 +30,13 @@ export const DEFAULT_STYLE_BIBLE: StyleRule[] = [
     id: "audio-01",
     category: "AUDIO_DESIGN",
     label: "Global Sound Directive",
-    value: "Sound design over score. No traditional soundtrack. Sub-bass drones, industrial percussive hits, metallic texture. Trap-influenced 808 sub-bass on impacts. Distorted risers for tension builds. Audio should feel modern and lethal — not cinematic orchestra.",
+    value: "Sound design over score. No traditional soundtrack. Sub-bass drones, industrial percussive hits, metallic texture on impacts. Distorted risers for tension builds. Modern and aggressive — not cinematic orchestra.",
   },
   {
-    id: "lethality-01",
-    category: "LETHALITY",
-    label: "Environmental Threat",
-    value: "Every surface looks like it could kill you — rusted edges, wet metal, sharp angles. Breath visible in cold air. No warmth anywhere in frame. Holographic UI overlays on tribute pedestals — vitals, district numbers, glitching red data. Lens flares on cold metal surfaces only.",
+    id: "arena-tech-01",
+    category: "ARENA_TECH",
+    label: "Arena Technology",
+    value: "Modern, technologically advanced arena infrastructure. Clean engineered metal platforms, smooth composite surfaces, precision-machined launch mechanisms. Visible weapons — bladed, ranged, improvised — scattered near Cornucopia and supply caches. Technology should feel sleek and deliberate, designed to kill efficiently.",
   },
 ];
 
@@ -47,7 +47,7 @@ export const SCENE_STYLE_OVERRIDES: Record<number, StyleRule[]> = {
       id: "arena-s1",
       category: "ENVIRONMENT",
       label: "Launch Arena",
-      value: "Circular launch platforms arranged in a ring around the golden Cornucopia. Rusted iron pedestals on damp packed earth. Tall dead yellow-brown grass surrounding the platforms. Metal tribute tubes/glass cylinders rise from underground — tributes ascend inside them. Dense forest treeline 200m out. Flat overcast sky, cold morning light. Holographic countdown timer projected above Cornucopia — red numbers ticking from 60 to 0. Holographic UI overlays near each pedestal — district numbers, vitals data, glitching red indicators.",
+      value: "Circular launch platforms arranged in a ring around the golden Cornucopia. Metal pedestals on packed earth. Tall dead yellow-brown grass surrounding the platforms. Metal tribute tubes/glass cylinders rise from underground — tributes ascend inside them. Dense forest treeline 200m out. Flat overcast sky, cold morning light. Holographic countdown timer projected above Cornucopia — red numbers ticking from 60 to 0. Visible weapons — blades, bows, tactical gear — scattered near Cornucopia and in orange backpacks.",
     },
     {
       id: "camera-s1",
@@ -65,7 +65,7 @@ export const SCENE_STYLE_OVERRIDES: Record<number, StyleRule[]> = {
       id: "audio-s1",
       category: "AUDIO_DESIGN",
       label: "Scene 1 Sound Design",
-      value: "PRE-GONG: Dead silence. Wind. Distant mockingjay calls. Breath visible, audible. POST-GONG: Immediate low 808 sub-bass hit on the gong itself. Industrial percussive texture under sprint — metallic clangs, boot impacts on rusted iron. No melody. Distorted bass riser building as tributes close distance to Cornucopia. Trap hi-hat rolls on quick cuts between faces.",
+      value: "PRE-GONG: Dead silence. Wind. Distant mockingjay calls. POST-GONG: Immediate low sub-bass hit on the gong itself. Industrial percussive texture under sprint — metallic impacts, boot stomps on metal platforms. No melody, no music. Distorted bass riser building as tributes close distance to Cornucopia.",
     },
     {
       id: "transition-s1",
@@ -77,7 +77,7 @@ export const SCENE_STYLE_OVERRIDES: Record<number, StyleRule[]> = {
       id: "negative-s1",
       category: "NEGATIVE_PROMPT",
       label: "Scene 1 Negs",
-      value: "NEVER: Digital-clean rendering. NEVER: Saturated/vibrant colors. NEVER: Heroic golden-hour sunlight. NEVER: Smiling or comedic expressions. NEVER: Clean/pristine wardrobe. NEVER: Smooth/airbrushed skin. NEVER: Handheld camera BEFORE the gong sounds. NEVER: Score or non-diegetic music during countdown. NEVER: Traditional orchestral score. NEVER: Warm tones or orange highlights before blood is drawn.",
+      value: "NEVER: Digital-clean rendering. NEVER: Saturated/vibrant colors. NEVER: Heroic golden-hour sunlight. NEVER: Smiling or comedic expressions. NEVER: Clean/pristine wardrobe. NEVER: Smooth/airbrushed skin. NEVER: Handheld camera BEFORE the gong sounds. NEVER: Score or non-diegetic music during countdown. NEVER: Traditional orchestral score or music at any point.",
     },
   ],
   2: [
