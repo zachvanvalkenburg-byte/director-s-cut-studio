@@ -77,7 +77,7 @@ export const SCENE_STYLE_OVERRIDES: Record<number, StyleRule[]> = {
       id: "negative-s1",
       category: "NEGATIVE_PROMPT",
       label: "Scene 1 Negs",
-      value: "NEVER: Digital-clean rendering. NEVER: Saturated/vibrant colors. NEVER: Heroic golden-hour sunlight. NEVER: Smiling or comedic expressions. NEVER: Clean/pristine wardrobe. NEVER: Smooth/airbrushed skin. NEVER: Handheld camera BEFORE the gong sounds. NEVER: Score or non-diegetic music during countdown. NEVER: Traditional orchestral score. NEVER: Warm tones or orange highlights before blood is drawn.",
+      value: "NEVER: Digital-clean rendering. NEVER: Saturated/vibrant colors. NEVER: Heroic golden-hour sunlight. NEVER: Smiling or comedic expressions. NEVER: Clean/pristine wardrobe. NEVER: Smooth/airbrushed skin. NEVER: Handheld camera BEFORE the gong sounds. NEVER: Score or non-diegetic music during countdown. NEVER: Traditional orchestral score or music at any point.",
     },
   ],
   2: [
