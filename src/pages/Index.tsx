@@ -5,6 +5,7 @@ import SceneSidebar, { scenes } from "@/components/SceneSidebar";
 import CharacterCard from "@/components/CharacterCard";
 import PromptGenerator from "@/components/PromptGenerator";
 import StyleBiblePanel from "@/components/StyleBiblePanel";
+import SystemPromptPanel from "@/components/SystemPromptPanel";
 import MakeSyncButton from "@/components/MakeSyncButton";
 import MasterExportButton from "@/components/MasterExportButton";
 import InvideoAssemblyTab from "@/components/InvideoAssemblyTab";
@@ -226,6 +227,8 @@ const Index = () => {
             />
 
             <ExportAudioScript scene={activeSceneData} />
+
+            <SystemPromptPanel characters={characters} activeScene={activeScene} />
 
             <StyleBiblePanel rules={DEFAULT_STYLE_BIBLE} />
 
