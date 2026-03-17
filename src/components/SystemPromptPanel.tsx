@@ -48,12 +48,19 @@ function generateGeminiPrompt(
   lines.push("");
 
   // Location
-  lines.push("--- CURRENT LOCATION ---");
+  lines.push("--- CORE ENVIRONMENT ---");
   lines.push(`Setting: ${LOCATION_DATA.setting}`);
   lines.push(`Terrain: ${LOCATION_DATA.terrain}`);
-  lines.push(`Atmosphere: ${LOCATION_DATA.atmosphere}`);
-  lines.push(`Season: ${LOCATION_DATA.season}`);
-  lines.push(`Ambient Sound: ${LOCATION_DATA.sound}`);
+  lines.push(`Flora: ${LOCATION_DATA.flora}`);
+  lines.push(`Weather: ${LOCATION_DATA.weather}`);
+  lines.push("");
+
+  // Cinematography
+  lines.push("--- TECHNICAL CINEMATOGRAPHY (KLING AI SPECS) ---");
+  lines.push(`Film Stock: ${CINEMATOGRAPHY.filmStock}`);
+  lines.push(`Color Grade: ${CINEMATOGRAPHY.colorGrade}`);
+  lines.push(`Motion: ${CINEMATOGRAPHY.motion}`);
+  lines.push(`Framing: ${CINEMATOGRAPHY.framing}`);
   lines.push("");
 
   // Kill Order
