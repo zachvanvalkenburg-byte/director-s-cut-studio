@@ -12,11 +12,23 @@ interface SystemPromptPanelProps {
 }
 
 const LOCATION_DATA = {
-  setting: "Appalachian Woods",
-  terrain: "Dense hardwood forest, dead leaves on ground, exposed roots, rocky outcrops",
-  atmosphere: "Mountain mist, overcast sky, cold damp air, low visibility beyond 50m",
-  season: "Late autumn — trees bare or nearly bare, brown/grey palette, no green canopy",
-  sound: "Wind through dead branches, distant water, crunching leaves underfoot",
+  setting: "High-altitude Appalachian Meadow / North Carolina Pine Forest",
+  terrain: "Damp, dark gray earth; mud-slicked paths; tall, dead, yellow-brown grass",
+  flora: "Dense, spindly pine and oak trees; overgrown, unmanaged wilderness",
+  weather: "Constant flat overcast lighting; thick mountain mist; cold, damp atmosphere",
+};
+
+const CINEMATOGRAPHY = {
+  filmStock: "Super 35mm film grit; visible grain; no 'digital clean' look",
+  colorGrade: "Desaturated Bleach-Bypass; crushed blacks; teal-tinted shadows; muted earthy greens",
+  motion: "Handheld 'shaky-cam' documentary style; 45-degree shutter angle (crisp, jittery, panicked motion)",
+  framing: "2.35:1 Anamorphic; claustrophobic close-ups mixed with wide desolate meadow shots",
+};
+
+const PERFORMANCE_DIRECTIVES = {
+  emotionalState: "High-anxiety; pure survival instinct; terrified and exhausted",
+  wardrobe: "Dusty tactical gear; visible sweat and grime; torn fabrics",
+  hardNegatives: "NO smiling; NO vibrant/saturated colors; NO heroic sunlight; NO clean skin",
 };
 
 function generateGeminiPrompt(
@@ -36,12 +48,19 @@ function generateGeminiPrompt(
   lines.push("");
 
   // Location
-  lines.push("--- CURRENT LOCATION ---");
+  lines.push("--- CORE ENVIRONMENT ---");
   lines.push(`Setting: ${LOCATION_DATA.setting}`);
   lines.push(`Terrain: ${LOCATION_DATA.terrain}`);
-  lines.push(`Atmosphere: ${LOCATION_DATA.atmosphere}`);
-  lines.push(`Season: ${LOCATION_DATA.season}`);
-  lines.push(`Ambient Sound: ${LOCATION_DATA.sound}`);
+  lines.push(`Flora: ${LOCATION_DATA.flora}`);
+  lines.push(`Weather: ${LOCATION_DATA.weather}`);
+  lines.push("");
+
+  // Cinematography
+  lines.push("--- TECHNICAL CINEMATOGRAPHY (KLING AI SPECS) ---");
+  lines.push(`Film Stock: ${CINEMATOGRAPHY.filmStock}`);
+  lines.push(`Color Grade: ${CINEMATOGRAPHY.colorGrade}`);
+  lines.push(`Motion: ${CINEMATOGRAPHY.motion}`);
+  lines.push(`Framing: ${CINEMATOGRAPHY.framing}`);
   lines.push("");
 
   // Kill Order
@@ -66,11 +85,10 @@ function generateGeminiPrompt(
     lines.push(`${rule.category} / ${rule.label}: ${rule.value}`);
   });
   lines.push("");
-  lines.push("HARD RULES:");
-  lines.push("• 35mm anamorphic lens — ALL shots");
-  lines.push("• Desaturated teal-and-orange color grading — NO saturated colors");
-  lines.push("• NO smiling — dead serious tone only, no humor, no levity");
-  lines.push("• Handheld camera movement — grounded realism");
+  lines.push("HARD NEGATIVE CONSTRAINTS:");
+  lines.push(`• ${PERFORMANCE_DIRECTIVES.hardNegatives}`);
+  lines.push(`• Emotional State: ${PERFORMANCE_DIRECTIVES.emotionalState}`);
+  lines.push(`• Wardrobe: ${PERFORMANCE_DIRECTIVES.wardrobe}`);
   lines.push("• Hunger Games Arena aesthetic — NOT modern military");
   lines.push("");
 
@@ -156,15 +174,15 @@ const SystemPromptPanel = ({ characters, activeScene }: SystemPromptPanelProps) 
               <div className="grid grid-cols-3 gap-2">
                 <div className="rounded-sm bg-background/30 px-3 py-2">
                   <span className="font-mono text-[8px] uppercase tracking-widest text-muted-foreground">LOCATION</span>
-                  <p className="mt-0.5 text-[11px] text-foreground/80">{LOCATION_DATA.setting}</p>
+                  <p className="mt-0.5 text-[11px] text-foreground/80">Appalachian Meadow / NC Pine Forest</p>
                 </div>
                 <div className="rounded-sm bg-background/30 px-3 py-2">
                   <span className="font-mono text-[8px] uppercase tracking-widest text-muted-foreground">KILL ORDER</span>
                   <p className="mt-0.5 text-[11px] text-foreground/80">{alive.length} alive / {dead.length} KIA</p>
                 </div>
                 <div className="rounded-sm bg-background/30 px-3 py-2">
-                  <span className="font-mono text-[8px] uppercase tracking-widest text-muted-foreground">STYLE</span>
-                  <p className="mt-0.5 text-[11px] text-foreground/80">35mm / Desat / No smile</p>
+                  <span className="font-mono text-[8px] uppercase tracking-widest text-muted-foreground">LOOK</span>
+                  <p className="mt-0.5 text-[11px] text-foreground/80">35mm / Bleach-Bypass / No smile</p>
                 </div>
               </div>
 
