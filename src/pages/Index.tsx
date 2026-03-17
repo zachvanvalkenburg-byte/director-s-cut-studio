@@ -229,6 +229,8 @@ const Index = () => {
 
             <ExportAudioScript scene={activeSceneData} />
 
+            <ReferenceIngestorPanel />
+
             <SystemPromptPanel characters={characters} activeScene={activeScene} />
 
             <StyleBiblePanel rules={DEFAULT_STYLE_BIBLE} />
